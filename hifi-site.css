@@ -1,0 +1,443 @@
+/* HiFiBlog-inspired full-site variants. */
+
+.site-footer-gpt {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 34px 32px;
+}
+
+.site-footer-gpt-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.site-footer-gpt a {
+  color: var(--accent-amber);
+  font-weight: 700;
+}
+
+.site-page-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
+.site-ledger-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 2px solid var(--ink);
+}
+
+.site-ledger-cell {
+  padding: 22px 18px 24px 0;
+  border-right: 1px solid var(--line-soft);
+}
+
+.site-ledger-cell:last-child {
+  border-right: 0;
+}
+
+.site-ledger-cell strong {
+  display: block;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.site-ledger-cell span {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.site-small-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent-amber-deep);
+  font-weight: 700;
+}
+
+.site-score-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.site-score-card {
+  background: var(--paper-warm);
+  border: 1px solid var(--line-soft);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.site-score-card span {
+  display: block;
+  font-family: var(--mono);
+  color: var(--ink-light);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.site-score-card strong {
+  display: block;
+  font-size: 24px;
+  letter-spacing: -0.03em;
+  margin-top: 8px;
+}
+
+.site-score-card p {
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.45;
+  margin: 8px 0 0;
+}
+
+.site-principle-ledger {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.site-note-split {
+  margin-top: 28px;
+}
+
+.site-kpi-band {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+  gap: 34px;
+  background: var(--ink);
+  color: var(--paper);
+  margin-top: 28px;
+  padding: 30px;
+  border-radius: 0 28px 0 28px;
+}
+
+.site-kpi-band h3 {
+  margin: 14px 0 0;
+  color: var(--paper);
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.site-kpi-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.site-kpi-list div {
+  border-top: 1px solid rgba(251, 250, 245, 0.24);
+  padding-top: 14px;
+}
+
+.site-kpi-list strong,
+.site-kpi-list span {
+  display: block;
+}
+
+.site-kpi-list strong {
+  color: var(--paper);
+  font-size: 16px;
+}
+
+.site-kpi-list span {
+  color: rgba(251, 250, 245, 0.72);
+  font-size: 13px;
+  line-height: 1.55;
+  margin-top: 8px;
+}
+
+.funnel-report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.funnel-report-card {
+  min-height: 270px;
+  border: 1px solid var(--line-soft);
+  border-radius: 28px 0 28px 0;
+  background: linear-gradient(180deg, var(--paper), var(--paper-warm));
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.funnel-report-card::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  right: -58px;
+  top: -62px;
+  background: rgba(232, 168, 58, 0.14);
+}
+
+.funnel-report-index {
+  font-family: var(--mono);
+  color: var(--accent-amber-deep);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+
+.funnel-report-card h3 {
+  margin: 62px 0 10px;
+  font-size: 23px;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.funnel-report-card p {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+.metric-chip-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.metric-chip-row span {
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.64);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 7px 9px;
+}
+
+.channel-ledger {
+  border-top: 2px solid var(--ink);
+}
+
+.channel-line {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.35fr);
+  gap: 30px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.channel-line span {
+  display: block;
+  font-family: var(--mono);
+  color: var(--accent-amber-deep);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.channel-line h3 {
+  margin: 10px 0 0;
+  font-size: 27px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.channel-line p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.site-lifecycle-stage strong {
+  color: var(--ink);
+}
+
+.attribution-board {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: 28px;
+}
+
+.attribution-copy {
+  background: var(--paper-warm);
+  border: 1px solid var(--line-soft);
+  border-radius: 0 28px 0 28px;
+  padding: 28px;
+}
+
+.attribution-copy h3 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.attribution-copy p {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.attribution-score-row {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.attribution-table {
+  border-top: 2px solid var(--ink);
+}
+
+.attribution-table div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.attribution-table strong {
+  font-size: 16px;
+}
+
+.attribution-table span,
+.attribution-table em {
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-style: normal;
+  line-height: 1.55;
+}
+
+.site-dash-tight .dash-grid {
+  padding: 0;
+  max-width: none;
+}
+
+.site-example-tight .examples-list {
+  padding: 0;
+  max-width: none;
+}
+
+.site-case .article-masthead {
+  border-top: 4px solid var(--brand, var(--accent-amber));
+}
+
+.site-case .article-snapshot {
+  border-radius: 0 28px 0 28px;
+  border-top: 4px solid var(--brand, var(--accent-amber));
+}
+
+.site-lifecycle-line {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  border-top: 2px solid var(--ink);
+  margin: 26px 0 34px;
+}
+
+.site-lifecycle-stage {
+  min-height: 160px;
+  padding: 18px 12px 18px 0;
+  border-right: 1px solid var(--line-soft);
+}
+
+.site-lifecycle-stage:last-child {
+  border-right: 0;
+}
+
+.site-lifecycle-stage.is-active {
+  background: linear-gradient(180deg, var(--brand-wash, rgba(232,168,58,.12)), transparent 72%);
+}
+
+.site-lifecycle-stage span {
+  font-family: var(--mono);
+  color: var(--brand, var(--accent-amber-deep));
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.site-lifecycle-stage h3 {
+  margin: 42px 0 8px;
+  font-size: 17px;
+  line-height: 1.12;
+}
+
+.site-lifecycle-stage p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.site-star-list {
+  border-top: 2px solid var(--ink);
+}
+
+.site-star-row {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 30px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.site-star-row h3 {
+  margin: 0;
+  color: var(--brand, var(--accent-amber-deep));
+}
+
+.site-star-row p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.72;
+}
+
+@media (max-width: 1040px) {
+  .site-ledger-grid,
+  .site-lifecycle-line,
+  .site-score-row,
+  .site-principle-ledger,
+  .funnel-report-grid,
+  .site-kpi-list,
+  .attribution-score-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .site-kpi-band,
+  .channel-line,
+  .attribution-board,
+  .attribution-table div {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .site-ledger-grid,
+  .site-lifecycle-line,
+  .site-score-row,
+  .site-principle-ledger,
+  .funnel-report-grid,
+  .site-kpi-list,
+  .attribution-score-row,
+  .site-star-row {
+    grid-template-columns: 1fr;
+  }
+
+  .site-ledger-cell,
+  .site-lifecycle-stage {
+    border-right: 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+}

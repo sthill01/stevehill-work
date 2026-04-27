@@ -1,0 +1,42 @@
+/* Brand palettes — case studies + dashboard preview cards */
+/* Loaded AFTER hifi-styles.css so these rules parse in isolation. */
+
+.brand-netgain  { --brand: #f26a21; --brand-ink: #1a1a1a; --brand-wash: rgba(242,106,33,0.08); --brand-wash-strong: rgba(242,106,33,0.35); --brand-edge: rgba(242,106,33,0.25); }
+.brand-foxit    { --brand: #e1251b; --brand-ink: #1a1a1a; --brand-wash: rgba(225,37,27,0.08);  --brand-wash-strong: rgba(225,37,27,0.32);  --brand-edge: rgba(225,37,27,0.25); }
+.brand-squirrel { --brand: #e6723a; --brand-ink: #2b2017; --brand-wash: rgba(230,114,58,0.08); --brand-wash-strong: rgba(230,114,58,0.35); --brand-edge: rgba(230,114,58,0.25); }
+.brand-uta      { --brand: #0069a7; --brand-ink: #ffffff; --brand-wash: rgba(0,105,167,0.07);  --brand-wash-strong: rgba(0,105,167,0.28);  --brand-edge: rgba(0,105,167,0.25); }
+
+.brand-hero { border-top: 4px solid var(--brand); }
+.brand-hero .hero-v2-eyebrow { color: var(--brand); }
+.brand-hero .hero-v2-h1 .wave {
+  background-image: linear-gradient(transparent 62%, var(--brand-wash-strong) 0);
+}
+.brand-hero .tag.brand-tag {
+  background: var(--brand);
+  color: var(--brand-ink);
+  border-color: var(--brand);
+}
+.brand-hero .hero-v2-feature-caption-n { color: var(--brand); }
+
+.brand-strip {
+  background: var(--brand-wash);
+  border-color: var(--brand-edge) !important;
+}
+.brand-strip .proof-n { color: var(--brand); }
+
+.brand-num-rule { border-top: 2px solid var(--brand) !important; }
+.brand-num-rule .proof-n { color: var(--brand); }
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 99px;
+  background: var(--brand);
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.dash-card.brand-netgain  .dash-card-mark { background: #f26a21; color: #fff; border-color: #f26a21; }
+.dash-card.brand-foxit    .dash-card-mark { background: #e1251b; color: #fff; border-color: #e1251b; }
+.dash-card.brand-squirrel .dash-card-mark { background: #e6723a; color: #fff; border-color: #e6723a; }
+.dash-card.brand-uta      .dash-card-mark { background: #0069a7; color: #fff; border-color: #0069a7; }
