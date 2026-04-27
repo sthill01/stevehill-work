@@ -751,6 +751,27 @@ const IHS_SCOPE_PROTOCOL = [
   ["Communicate", "Name what changed, why, who owns it, and what moves as a result."]
 ];
 
+const IHS_EXECUTIVE_KPIS = [
+  ["Pipeline contribution", "42%", "up", "+6 pts MoM", "Percent of total sales pipeline that is marketing-originated or marketing-influenced. This shows whether campaigns, attribution, routing, and data quality are creating qualified revenue opportunities, not just lead activity.", ["Qualified opportunity value", "Marketing-originated vs. influenced", "Lead routing accuracy"]],
+  ["CAC efficiency", "$221", "down-good", "-12% MoM", "Cost per booked customer, tracked with channel and campaign cost allocation. When CAC falls while booked-job quality holds or improves, the system is producing more efficient growth.", ["Cost / lead", "Cost / booked customer", "CAC ratio by channel"]],
+  ["Funnel conversion velocity", "9.8 days", "down-good", "-1.6 days MoM", "Time from first engagement to booked or closed outcome, broken down by stage. Faster velocity shows the systems are reducing friction for marketing, call intake, sales, and operations.", ["Speed to first touch", "Lead-to-booking time", "Stage leakage by brand"]]
+];
+
+const IHS_OPERATING_SCORECARD = [
+  ["Spend", "$42K", "up", "+8% MoM", "Media investment"],
+  ["Calls / day", "118", "up", "+11% MoM", "Demand pressure"],
+  ["Cost / lead", "$86", "down-good", "-9% MoM", "Top-funnel cost"],
+  ["Services booked / day", "46", "up", "+14% MoM", "North Star"],
+  ["Cost / booked customer", "$221", "down-good", "-12% MoM", "Cost to real goal"],
+  ["Booked-job rate", "39%", "up", "+5 pts MoM", "Handoff quality"],
+  ["Revenue", "$186K", "up", "+17% MoM", "Booked/completed value"],
+  ["ROAS", "4.4x", "up", "+0.6x MoM", "Media efficiency"],
+  ["Repeat / referral", "18%", "up", "+3 pts MoM", "Downstream quality"],
+  ["NPS", "71", "down", "-4 pts MoM", "Promoter signal"],
+  ["Source confidence", "84%", "up", "+7 pts MoM", "Tracking trust"],
+  ["Next action", "Fix", "neutral", "Call answer gap", "Weekly action"]
+];
+
 const IHSLandingPageSite = () => (
   <SiteShellHiFi active="home">
     <BlogHeroHiFi
@@ -948,9 +969,42 @@ const IHSPlanPageSite = () => (
         </section>
         <section id="growth-scorecard" className="blog-section">
           <SectionIntroHiFi eyebrow="Example deliverable" title="Growth baseline scorecard." copy="A practical scorecard should make the weekly question simple: what should we scale, what should we fix, what should we test, and what should we watch?" />
+          <div className="executive-kpi-deliverable">
+            <div>
+              <span className="site-small-label">Dashboard deliverable</span>
+              <h3>Marketing Ops revenue impact view.</h3>
+              <p>This is the executive layer I would want above the operating scorecard: pipeline contribution, CAC efficiency, and funnel conversion velocity. It connects marketing systems work to qualified revenue opportunity, capital efficiency, and speed through the funnel.</p>
+            </div>
+            <div className="metric-chip-row">
+              <span>Weekly operating review</span>
+              <span>Month-over-month trend</span>
+              <span>Brand / channel / stage filters</span>
+              <span>CMO + CFO + CRO friendly</span>
+            </div>
+          </div>
+          <div className="executive-kpi-grid">
+            {IHS_EXECUTIVE_KPIS.map(([label, value, trend, delta, copy, drivers]) => (
+              <article className="executive-kpi-card" key={label}>
+                <div className="executive-kpi-head">
+                  <span>{label}</span>
+                  <em className={`trend-pill trend-${trend}`}>{trend === "down" || trend === "down-good" ? "▼" : "▲"} {delta}</em>
+                </div>
+                <strong>{value}</strong>
+                <p>{copy}</p>
+                <div className="metric-chip-row">
+                  {drivers.map((driver) => <span key={driver}>{driver}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
           <div className="site-score-row site-score-row-wide">
-            {[["Spend", "$42K", "Media investment"], ["Calls / day", "118", "Demand pressure"], ["Cost / lead", "$86", "Top-funnel cost"], ["Services booked / day", "46", "North Star"], ["Cost / booked customer", "$221", "Cost to real goal"], ["Booked-job rate", "39%", "Handoff quality"], ["Revenue", "$186K", "Booked/completed value"], ["ROAS", "4.4x", "Media efficiency"], ["Repeat / referral", "18%", "Downstream quality"], ["NPS", "71", "Promoter signal"], ["Source confidence", "84%", "Tracking trust"], ["Next action", "Fix", "Call answer gap"]].map(([label, value, copy]) => (
-              <div className="site-score-card" key={label}><span>{label}</span><strong>{value}</strong><p>{copy}</p></div>
+            {IHS_OPERATING_SCORECARD.map(([label, value, trend, delta, copy]) => (
+              <div className="site-score-card scorecard-trend-card" key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+                <em className={`trend-pill trend-${trend}`}>{trend === "down" || trend === "down-good" ? "▼" : trend === "neutral" ? "→" : "▲"} {delta}</em>
+                <p>{copy}</p>
+              </div>
             ))}
           </div>
         </section>
