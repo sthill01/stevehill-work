@@ -17,6 +17,7 @@ This repo is intended to be connected directly to Cloudflare Pages. It contains 
 - `Case-UTA.html`
 - `IHS.html` (clean route: `/IHS`)
 - `IHS-120-Day-Plan.html` (clean route: `/IHS-120-Day-Plan`)
+- `IHS-Round3-Presentation.html` (clean route: `/IHS-Round3-Presentation`)
 
 The previous sandbox/review repo remains available separately as `stevehill-work-redesign`.
 

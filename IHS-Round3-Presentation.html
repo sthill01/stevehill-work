@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steve Hill · Intermountain Home Services · Round 3 Onsite</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #0F2A44;
+    --navy-2:    #1A3D5E;
+    --steel:     #2D6BA0;
+    --steel-2:   #3E8AC7;
+    --gold:      #D8A94B;
+    --gold-dark: #B58A2C;
+    --white:     #FFFFFF;
+    --paper:     #F7F9FB;
+    --grey-lt:   #E2E6EA;
+    --grey-mid:  #7A8898;
+    --grey-dark: #4A5B70;
+    --ink:       #1A1A1A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #1A1A1A; font-family: 'Inter', sans-serif; color: var(--ink); overflow: hidden; }
+
+  .deck { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .slide {
+    width: min(95vw, calc(95vh * 16 / 9));
+    aspect-ratio: 16 / 9;
+    background: var(--white);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+
+  /* === HEADER STRIP (navy band) === */
+  .hdr {
+    background: var(--navy);
+    color: var(--white);
+    height: 7%;
+    padding: 0 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--gold);
+    flex-shrink: 0;
+  }
+  .hdr-left { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    background: var(--white);
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    font-size: 16px;
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+  }
+  .logo-mark .gold { color: var(--gold); }
+  .hdr-titles { display: flex; flex-direction: column; line-height: 1.15; }
+  .hdr-title { font-size: 13px; font-weight: 700; color: var(--white); }
+  .hdr-sub { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: 1.5px; }
+  .hdr-right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 700; color: var(--gold);
+    letter-spacing: 1.5px;
+  }
+
+  /* === FOOTER STRIP === */
+  .ftr {
+    height: 5%;
+    border-top: 2px solid var(--gold);
+    padding: 0 3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--grey-dark);
+    background: var(--white);
+    flex-shrink: 0;
+  }
+  .ftr-right {
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1.5px;
+  }
+
+  /* === BODY (between header + footer) === */
+  .body {
+    flex: 1;
+    padding: 3% 4%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+  }
+
+  /* === EYEBROW (gold dash + section tag) === */
+  .eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12px;
+  }
+  .eyebrow .dash { width: 24px; height: 4px; background: var(--gold); border-radius: 1px; }
+  .eyebrow .tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--steel); text-transform: uppercase; }
+
+  /* === HEADLINES (sans-serif bold navy) === */
+  h1.title { font-family: 'Inter', sans-serif; font-size: 38px; font-weight: 700; color: var(--navy); line-height: 1.1; letter-spacing: -1px; margin-bottom: 10px; }
+  h2.title { font-family: 'Inter', sans-serif; font-size: 30px; font-weight: 700; color: var(--navy); line-height: 1.15; letter-spacing: -0.6px; margin-bottom: 8px; }
+  h2.title em { color: var(--gold); font-style: normal; }
+  .subtitle { font-size: 15px; line-height: 1.45; color: var(--grey-dark); max-width: 92%; margin-bottom: 18px; }
+
+  /* === COVER SLIDE (navy) === */
+  .cover { background: var(--navy) !important; }
+  .cover .body { background: var(--navy) !important; }
+  .cover .ftr { background: var(--navy) !important; border-top-color: var(--gold) !important; color: rgba(255,255,255,0.55) !important; }
+  .cover .ftr-right { color: var(--gold) !important; }
+  .cover-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .cover-eyebrow .dash { width: 28px; height: 4px; background: var(--gold); border-radius: 1px; }
+  .cover-eyebrow .tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase; }
+  .cover h1 {
+    font-family: 'Inter', sans-serif; font-size: 56px; font-weight: 800;
+    color: var(--white); line-height: 1.05; letter-spacing: -2px;
+    max-width: 88%; margin-bottom: 8px;
+  }
+  .cover h1 .gold { color: var(--gold); font-weight: 600; font-style: italic; }
+  .cover-sub {
+    font-size: 16px; color: rgba(255,255,255,0.78); max-width: 76%;
+    line-height: 1.45; margin-bottom: 20px;
+  }
+  .cover-pills { display: flex; gap: 10px; margin-bottom: 24px; }
+  .cover-pill {
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.04);
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 7px 14px;
+    border-radius: 2px;
+  }
+  .cover-byline {
+    font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 4px;
+  }
+  .cover-byline strong { color: var(--white); font-weight: 700; }
+
+  /* Day 120 Agreement (slide 2) */
+  .agreement-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+  .agreement-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex: 1; }
+  .ag-card {
+    background: var(--paper);
+    border-top: 4px solid var(--gold);
+    padding: 16px 18px 18px 18px;
+    display: flex; flex-direction: column;
+  }
+  .ag-card .num {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px; font-weight: 800;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .ag-card .name {
+    font-size: 16px; font-weight: 700;
+    color: var(--navy); margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .ag-card .desc {
+    font-size: 12px; line-height: 1.45; color: var(--grey-dark);
+  }
+
+  /* === WORKING-BACKWARDS TABLE === */
+  .wb-table {
+    display: grid;
+    grid-template-columns: 110px 1.6fr 1.4fr 1.4fr 1.6fr;
+    border: 1px solid var(--grey-lt);
+    flex: 1;
+    overflow: hidden;
+  }
+  .wb-table > div {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--grey-lt);
+    border-right: 1px solid var(--grey-lt);
+    font-size: 11.5px;
+    line-height: 1.42;
+    color: var(--ink);
+  }
+  .wb-table > div:nth-child(5n) { border-right: none; }
+  .wb-table .h {
+    background: var(--navy);
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  .wb-table .seat {
+    font-weight: 700; color: var(--navy); font-size: 12px;
+  }
+  .wb-table .row-1 > div { background: var(--white); }
+  .wb-table .row-2 > div { background: var(--paper); }
+  .wb-table .row-3 > div { background: var(--white); }
+  .wb-table .row-4 > div { background: var(--paper); }
+
+  /* === CAREER PROOF (with thumbnails) === */
+  .quad-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; flex: 1; }
+  .quad {
+    border: 1px solid var(--grey-lt);
+    border-top: 4px solid var(--gold);
+    background: var(--white);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .quad .thumb {
+    flex: 1;
+    background-size: cover;
+    background-position: top center;
+    background-color: var(--paper);
+  }
+  .quad.foxit .thumb { background-image: url('case_study_images/foxit_unified_lifecycle_scorecard_thumb.png'); }
+  .quad.netgain .thumb { background-image: url('case_study_images/netgain_multi_touch_attribution_thumb.png'); }
+  .quad.squirrel .thumb { background-image: url('case_study_images/website_squirrel_cac_segmentation_thumb.png'); }
+  .quad.uta .thumb { background-image: url('case_study_images/uta_operations_accountability_thumb.png'); }
+  .quad-meta {
+    background: var(--white);
+    padding: 9px 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid var(--grey-lt);
+  }
+  .quad-meta .lhs { display: flex; flex-direction: column; }
+  .quad-meta .nm { font-size: 14px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+  .quad-meta .ctx { font-size: 10px; color: var(--grey-mid); margin-top: 2px; }
+  .quad-meta .out {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    color: var(--gold); letter-spacing: 1px;
+  }
+
+  /* === STRATEGY (4 reasons) === */
+  .reasons-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex: 1; }
+  .reason {
+    background: var(--paper);
+    border-top: 4px solid var(--gold);
+    padding: 16px 16px;
+  }
+  .reason .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold-dark); letter-spacing: 1.5px; margin-bottom: 8px; font-weight: 700; }
+  .reason h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.2; }
+  .reason p { font-size: 12px; line-height: 1.45; color: var(--grey-dark); }
+
+  /* === GANTT === */
+  .gantt-wrap { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .gantt-block {
+    background: var(--paper);
+    border: 1px solid var(--grey-lt);
+    border-top: 4px solid var(--gold);
+    padding: 24px 28px;
+  }
+  .gantt-block .gh {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--steel); margin-bottom: 16px; font-weight: 700;
+  }
+  .gantt-block .grid { display: grid; grid-template-columns: 200px repeat(4, 1fr); gap: 4px; }
+  .gantt-block .col-h {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--grey-dark);
+    text-align: center; padding: 6px 8px; border-bottom: 1px solid var(--grey-lt); font-weight: 700;
+  }
+  .gantt-block .col-h.first { text-align: left; }
+  .gantt-block .row-label { font-size: 14px; color: var(--navy); font-weight: 700; padding: 12px 8px; display: flex; align-items: center; }
+  .gantt-block .bar { padding: 12px 8px; }
+  .gantt-block .bar-fill { height: 24px; border-radius: 2px; position: relative; }
+  .gantt-block .bar-fill::after {
+    content: attr(data-label);
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white); font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .bar-p1 { background: var(--steel); }
+  .bar-p2 { background: var(--steel-2); }
+  .bar-p3 { background: var(--gold); }
+  .bar-p4 { background: var(--navy); }
+
+  /* === PHASE SLIDES === */
+  .phase-tag-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .phase-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+    background: var(--navy);
+    padding: 4px 10px; border-radius: 2px;
+  }
+  .phase-days {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--grey-dark);
+    letter-spacing: 1.5px;
+  }
+  .phase-title { font-size: 28px; font-weight: 700; color: var(--navy); line-height: 1.1; letter-spacing: -0.6px; margin-bottom: 6px; }
+  .phase-objective { font-size: 16px; line-height: 1.4; color: var(--grey-dark); max-width: 88%; margin-bottom: 14px; font-style: italic; }
+  .phase-cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; flex: 1; }
+  .phase-cols h4 {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--steel); margin-bottom: 10px;
+    padding-bottom: 4px; border-bottom: 2px solid var(--gold);
+  }
+  .phase-cols ul { list-style: none; }
+  .phase-cols ul li {
+    font-size: 13px; line-height: 1.45; color: var(--ink);
+    padding-left: 16px; position: relative; margin-bottom: 5px;
+  }
+  .phase-cols ul li::before {
+    content: ''; position: absolute; left: 0; top: 8px;
+    width: 7px; height: 7px; background: var(--gold); border-radius: 50%;
+  }
+  .phase-cols ul li strong { color: var(--navy); font-weight: 700; }
+  .phase-precedent {
+    background: var(--paper);
+    border-left: 4px solid var(--gold);
+    padding: 10px 14px;
+    margin-top: 10px;
+  }
+  .phase-precedent .pp-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--gold-dark); margin-bottom: 5px; font-weight: 700;
+  }
+  .phase-precedent p {
+    font-size: 12.5px; line-height: 1.4; color: var(--ink); font-style: italic;
+  }
+
+  /* Per-department mini-row */
+  .dept-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+    margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--grey-lt);
+  }
+  .dept-row-h {
+    font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--steel); margin-bottom: 5px; font-weight: 700;
+    grid-column: 1 / -1;
+  }
+  .dept {
+    background: var(--paper);
+    border-left: 3px solid var(--gold);
+    padding: 7px 10px;
+  }
+  .dept .seat-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.2px;
+    text-transform: uppercase; font-weight: 700; color: var(--gold-dark);
+    margin-bottom: 2px;
+  }
+  .dept .takeaway { font-size: 10.5px; line-height: 1.3; color: var(--ink); }
+
+  /* === DAY 120 LANDING TILES === */
+  .day120-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; flex: 1; }
+  .day120-tile {
+    background: var(--paper);
+    border-top: 4px solid var(--gold);
+    padding: 16px 20px;
+  }
+  .day120-tile h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; line-height: 1.2; }
+  .day120-tile p { font-size: 12.5px; line-height: 1.45; color: var(--grey-dark); }
+
+  /* === PANELIST CHEAT SHEET === */
+  .panel-grid { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: 1fr 1fr; gap: 12px; flex: 1; }
+  .panel-card {
+    background: var(--white);
+    border: 1px solid var(--grey-lt);
+    border-top: 4px solid var(--gold);
+    padding: 14px 18px;
+    display: flex; flex-direction: column;
+  }
+  .panel-card .seat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 700; color: var(--gold-dark);
+    margin-bottom: 6px;
+  }
+  .panel-card .frame {
+    font-size: 15px; font-weight: 700; color: var(--navy);
+    line-height: 1.32; margin-bottom: 8px;
+  }
+  .panel-card .lead-with {
+    font-size: 12px; line-height: 1.42; color: var(--grey-dark);
+  }
+  .panel-card .lead-with strong { color: var(--navy); }
+
+  /* === DISCOVERY FRAMEWORK === */
+  .framework-flex { display: flex; gap: 24px; flex: 1; }
+  .framework-left, .framework-right { flex: 1; display: flex; flex-direction: column; }
+  .framework-buckets { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .bucket {
+    background: var(--paper); border-top: 4px solid var(--gold);
+    padding: 12px 14px;
+  }
+  .bucket h5 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .bucket p { font-size: 11.5px; line-height: 1.4; color: var(--grey-dark); }
+  .pull-quote {
+    background: var(--navy); color: var(--white);
+    padding: 16px 20px; border-left: 4px solid var(--gold);
+    margin-top: 12px;
+  }
+  .pull-quote .pq-text { font-size: 14px; line-height: 1.4; font-style: italic; }
+  .pull-quote .pq-text strong { color: var(--gold); font-style: normal; font-weight: 700; }
+
+  /* === CADENCE === */
+  .cadence-grid {
+    display: grid; grid-template-columns: 200px 1fr 1.6fr;
+    border: 1px solid var(--grey-lt);
+    margin-top: 8px;
+  }
+  .cadence-grid > div { padding: 10px 16px; border-bottom: 1px solid var(--grey-lt); }
+  .cadence-grid > div:nth-child(3n) { border-right: none; }
+  .cadence-grid .meeting-h {
+    background: var(--navy); color: var(--gold);
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700;
+  }
+  .cadence-grid .meeting-name { font-weight: 700; color: var(--navy); font-size: 13px; }
+  .cadence-grid .meeting-cadence {
+    color: var(--grey-dark); font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .cadence-grid .meeting-purpose { color: var(--ink); font-size: 12px; line-height: 1.4; }
+
+  /* === RISKS === */
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; }
+  .risk-card {
+    background: var(--paper);
+    border-left: 4px solid var(--gold);
+    padding: 12px 16px;
+  }
+  .risk-card .risk-h {
+    font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px;
+  }
+  .risk-card .risk-mit { font-size: 11.5px; line-height: 1.42; color: var(--grey-dark); }
+  .risk-card .risk-mit strong { color: var(--navy); font-weight: 700; }
+
+  /* === CLOSE === */
+  .close-slide.cover h1 { font-size: 42px; }
+  .close-slide.cover .cover-sub { max-width: 70%; font-size: 17px; }
+
+  /* === NAV CONTROLS === */
+  .nav { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; background: rgba(15, 42, 68, 0.92); color: #fff; padding: 8px 18px; border-radius: 40px; font-family: 'JetBrains Mono', monospace; font-size: 12px; z-index: 100; backdrop-filter: blur(8px); }
+  .nav button { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .nav button:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .nav .counter { letter-spacing: 1px; font-weight: 700; min-width: 60px; text-align: center; color: var(--gold); }
+  .nav .title-label { color: rgba(255,255,255,0.7); font-size: 10.5px; text-transform: uppercase; letter-spacing: 1px; }
+  .toggle-print { position: fixed; top: 18px; right: 18px; background: rgba(15,42,68,0.92); color: #fff; padding: 6px 14px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); z-index: 100; text-transform: uppercase; letter-spacing: 1px; }
+  .toggle-print:hover { background: var(--gold); color: var(--navy); }
+  .hint { position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.5); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 1px; z-index: 90; animation: fadeOut 6s forwards; }
+  @keyframes fadeOut { 70% { opacity: 1; } 100% { opacity: 0; } }
+  body.print-mode { overflow: auto; background: #EAE6DC; }
+  body.print-mode .nav, body.print-mode .toggle-print, body.print-mode .hint { display: none !important; }
+  body.print-mode .deck { position: static; display: block; padding: 24px 12px; }
+  body.print-mode .slide { display: flex !important; position: static; margin: 0 auto 24px auto; width: min(95vw, 1280px); box-shadow: 0 6px 24px rgba(0,0,0,0.15); }
+  @media print {
+    body { background: #fff; overflow: visible; }
+    .nav, .toggle-print, .hint { display: none !important; }
+    .deck { position: static; display: block; }
+    .slide { display: flex !important; position: static !important; width: 11in; aspect-ratio: 16 / 9; margin: 0 !important; page-break-after: always; box-shadow: none; }
+    .slide:last-child { page-break-after: auto; }
+    @page { size: 11in 6.1875in; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<button class="toggle-print" onclick="togglePrintMode()">Print View</button>
+
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1 — COVER -->
+  <div class="slide cover active">
+    <div class="hdr">
+      <div class="hdr-left">
+        <div class="logo-mark">IH<span class="gold">S</span></div>
+        <div class="hdr-titles">
+          <div class="hdr-title">Intermountain Home Services</div>
+          <div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div>
+        </div>
+      </div>
+      <div class="hdr-right">01 / 17</div>
+    </div>
+    <div class="body" style="justify-content: center;">
+      <div class="cover-eyebrow"><div class="dash"></div><div class="tag">Round 3 Onsite · April 2026</div></div>
+      <h1>The Marketing Operations Analytics <span class="gold">operating system.</span></h1>
+      <p class="cover-sub">A 10-brand, 120-day activation plan for taxonomy, forecasting, instrumentation, executive insights, testing, and scale decisions.</p>
+      <div class="cover-pills">
+        <div class="cover-pill">MEASURE</div>
+        <div class="cover-pill">FORECAST</div>
+        <div class="cover-pill">ANALYZE</div>
+        <div class="cover-pill">SCALE</div>
+      </div>
+      <div style="margin-top: 12px;">
+        <div class="cover-byline"><strong>Steve Hill</strong> · Marketing Operations Analyst</div>
+        <div class="cover-byline">steve@stevehill.work · stevehill.work · 801-850-1253</div>
+      </div>
+    </div>
+    <div class="ftr">
+      <div>stevehill.work · steve@stevehill.work · 801-850-1253</div>
+      <div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 — DAY 120 AGREEMENT -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="hdr-left">
+        <div class="logo-mark">IH<span class="gold">S</span></div>
+        <div class="hdr-titles">
+          <div class="hdr-title">Intermountain Home Services</div>
+          <div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div>
+        </div>
+      </div>
+      <div class="hdr-right">02 / 17</div>
+    </div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 01 · The Agreement</div></div>
+      <h1 class="title">Day 120 — what we agree this looks like.</h1>
+      <p class="subtitle">Before any work begins, this is the agreement: by Day 120, IHS has a working marketing measurement system that produces four conditions. Every deliverable that follows is designed backwards from these.</p>
+      <div class="agreement-grid">
+        <div class="ag-card">
+          <div class="num">01</div>
+          <div class="name">Proper tracking setup</div>
+          <div class="desc">Every brand, every channel, every conversion event tagged with the right convention. UTM, GTM, ServiceTitan Campaign + Job Tag fields, call-source mapping. We can trust what we are measuring.</div>
+        </div>
+        <div class="ag-card">
+          <div class="num">02</div>
+          <div class="name">Systems communicating</div>
+          <div class="desc">Ad platforms, GA4 / GTM, CallRail, ServiceTitan, revenue, and reviews all reconcile through agreed data contracts. No more "my number doesn't match your number."</div>
+        </div>
+        <div class="ag-card">
+          <div class="num">03</div>
+          <div class="name">Reporting + dashboards</div>
+          <div class="desc">One portfolio scorecard plus role-specific Power BI views. Daily refresh on the pilot, weekly portfolio-wide. Every dashboard names a decision owner.</div>
+        </div>
+        <div class="ag-card">
+          <div class="num">04</div>
+          <div class="name">Leakage identification</div>
+          <div class="desc">When a metric drops, the system tells us WHERE: media, intake, booking, dispatch, field ops, billing, or follow-up. No more guessing whose problem it is.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ftr">
+      <div>stevehill.work · steve@stevehill.work · 801-850-1253</div>
+      <div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 — WORKING BACKWARDS -->
+  <div class="slide">
+    <div class="hdr">
+      <div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div>
+      <div class="hdr-right">03 / 17</div>
+    </div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 02 · Working Backwards</div></div>
+      <h1 class="title">Each department names the goal. I work backwards from the KPIs.</h1>
+      <p class="subtitle" style="font-style: italic;">Each department tells me their goal, the KPIs that prove it, and the deliverable they need. I work backwards from those KPIs to design the tracking, the system handshakes, the reports, and the leakage detection.</p>
+      <div class="wb-table">
+        <div class="h">Department</div>
+        <div class="h">Goal</div>
+        <div class="h">KPIs we work backwards from</div>
+        <div class="h">Deliverable</div>
+        <div class="h">Benefit when it is live</div>
+
+        <div class="row-1 seat">Marketing</div>
+        <div class="row-1">Right allocation of marketing dollars + framework to test new channels, ads, offers, sales/specials fast and roll winners out at scale.</div>
+        <div class="row-1">CAC, ROAS, RPL by brand and channel · Attribution coverage % · Test cycle time · Win-rate of tests</div>
+        <div class="row-1">Brand Efficiency Benchmark · Budget Move Board · Test Calendar · Friday Growth Review</div>
+        <div class="row-1">Reversible, evidence-backed allocation. New tests get a defensible read in days, not quarters. Winners cascade through the playbook.</div>
+
+        <div class="row-2 seat">CEO</div>
+        <div class="row-2">Cross-brand visibility + risk-managed scale across 11 brands · Year-one ROI you can defend.</div>
+        <div class="row-2">Services booked / day · Completed-service revenue · CAC by brand · Attribution coverage %</div>
+        <div class="row-2">Portfolio scorecard · Pilot Brand outcomes · Stack Standardization Roadmap</div>
+        <div class="row-2">Visibility into all 11 brands from Day 30. Defensible budget moves by Day 120, grounded in pilot evidence.</div>
+
+        <div class="row-3 seat">IT</div>
+        <div class="row-3">One validated source-of-truth schema · No shadow pipelines · Pattern-based scale.</div>
+        <div class="row-3">System uptime · Refresh reliability · Schema coherence · Data confidence ratings</div>
+        <div class="row-3">Co-authored Data Contract · Pilot Governance · Source-lineage docs · Cascading playbook</div>
+        <div class="row-3">One ServiceTitan + CallRail + UTM convention validated. Brands 2–10 inherit the schema.</div>
+
+        <div class="row-4 seat">Call Center</div>
+        <div class="row-4">Clean accountability — separate lead quality from booking quality. End the double-blame loop.</div>
+        <div class="row-4">Booked-job rate · Speed-to-answer · Call-to-booking · Booked-to-completed</div>
+        <div class="row-4">Closed-Loop Attribution · Leakage Layer Analysis · ServiceTitan Job Tag standard</div>
+        <div class="row-4">Conversation shifts from "your bookers are slow" to "what stage is actually leaking."</div>
+      </div>
+    </div>
+    <div class="ftr">
+      <div>stevehill.work · steve@stevehill.work · 801-850-1253</div>
+      <div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 — WHY THIS FITS -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">04 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 03 · Why this fits</div></div>
+      <h1 class="title">Eleven brands = eleven multi-product attribution problems.</h1>
+      <p class="subtitle">That's exactly the measurement complexity I've solved at scale, three times before. Each engagement isolated a North Star metric inside a fragmented portfolio, then turned the measurement layer into a trusted decision instrument.</p>
+      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:14px; flex: 1; margin-top: 18px;">
+        <div style="background: var(--paper); border-top: 4px solid var(--gold); padding: 18px 20px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--gold-dark);font-weight:700;margin-bottom:8px;">NETGAIN</div>
+          <div style="font-size:18px; font-weight: 700; color:var(--navy); margin-bottom:8px;">6-product B2B SaaS</div>
+          <div style="font-size:12.5px;color:var(--grey-dark);line-height:1.42;">1–18 month sales cycles, 30 touchpoints, online + offline MTA, isolated North Star inside a fragmented funnel.</div>
+        </div>
+        <div style="background: var(--paper); border-top: 4px solid var(--gold); padding: 18px 20px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--gold-dark);font-weight:700;margin-bottom:8px;">FOXIT</div>
+          <div style="font-size:18px; font-weight: 700; color:var(--navy); margin-bottom:8px;">4-product portfolio</div>
+          <div style="font-size:12.5px;color:var(--grey-dark);line-height:1.42;">Unified four-system data layer. Lifecycle trigger engine across product, billing, support, marketing.</div>
+        </div>
+        <div style="background: var(--paper); border-top: 4px solid var(--gold); padding: 18px 20px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--gold-dark);font-weight:700;margin-bottom:8px;">UTA</div>
+          <div style="font-size:18px; font-weight: 700; color:var(--navy); margin-bottom:8px;">$300M revenue, 250+ TVMs</div>
+          <div style="font-size:12.5px;color:var(--grey-dark);line-height:1.42;">Two work streams: fare-elasticity forecasting + vendor SLA enforcement on a 250+ TVM fleet.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 5 — CAREER PROOF -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">05 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 04 · Career Proof</div></div>
+      <h1 class="title">The 120-day method has shipped at four prior companies.</h1>
+      <div class="quad-grid" style="margin-top: 12px;">
+        <div class="quad foxit"><div class="thumb"></div><div class="quad-meta"><div class="lhs"><div class="nm">Foxit</div><div class="ctx">Marketing Ops · Unified 4-system data layer</div></div><div class="out">72 hrs/wk · 3× ROI</div></div></div>
+        <div class="quad netgain"><div class="thumb"></div><div class="quad-meta"><div class="lhs"><div class="nm">Netgain</div><div class="ctx">Analytics Lead · 6-product MTA</div></div><div class="out">+250% mid-funnel</div></div></div>
+        <div class="quad squirrel"><div class="thumb"></div><div class="quad-meta"><div class="lhs"><div class="nm">Website Squirrel</div><div class="ctx">Analytics · Lead-segmentation reallocation</div></div><div class="out">−60%+ CAC</div></div></div>
+        <div class="quad uta"><div class="thumb"></div><div class="quad-meta"><div class="lhs"><div class="nm">UTA</div><div class="ctx">Analyst · Fare elasticity + 250+ TVMs</div></div><div class="out">$2.3M modeled</div></div></div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 6 — STRATEGY: PILOT THEN REPLICATE -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">06 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 05 · Pilot, Then Replicate</div></div>
+      <h1 class="title">Ten brands is too many to attack in parallel.</h1>
+      <p class="subtitle">The plan runs <strong style="color: var(--gold);">one brand fully through the framework first</strong>, then cascades. Risk shrinks, trust compounds, governance gets negotiated with one GM not ten.</p>
+      <div class="reasons-grid">
+        <div class="reason"><div class="num">REASON 01</div><h3>Risk shrinks</h3><p>If a piece of the model breaks — taxonomy, closed-loop logic, Power BI refresh — we break it on one brand. Fix it once. Replicate the fixed version.</p></div>
+        <div class="reason"><div class="num">REASON 02</div><h3>Trust compounds faster</h3><p>One brand fully landed by day 90 is more credible than ten brands half-built. The pilot becomes the proof object the other GMs see before committing.</p></div>
+        <div class="reason"><div class="num">REASON 03</div><h3>Politics gets easier</h3><p>Negotiating shared governance with one GM is a conversation. With ten simultaneously it's a committee. The pilot sets the precedent.</p></div>
+        <div class="reason"><div class="num">REASON 04</div><h3>IT lift right-sized</h3><p>One ServiceTitan configuration to wire up first. One CallRail integration. Cascading is known-pattern application — not exponential build-out.</p></div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 7 — GANTT -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">07 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 06 · The 120-day Arc</div></div>
+      <h1 class="title">Each phase has a contract of deliverables.</h1>
+      <div class="gantt-wrap">
+        <div class="gantt-block">
+          <div class="gh">Timeline · Pilot Brand Status</div>
+          <div class="grid">
+            <div class="col-h first">Phase</div>
+            <div class="col-h">Days 1–30</div><div class="col-h">Days 31–60</div><div class="col-h">Days 61–90</div><div class="col-h">Days 91–120</div>
+            <div class="row-label">1 · Inventory</div>
+            <div class="bar"><div class="bar-fill bar-p1" data-label="Audit · Pilot Selected"></div></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="row-label">2 · Stabilize</div>
+            <div class="bar"></div>
+            <div class="bar"><div class="bar-fill bar-p2" data-label="Governance · Dashboard live"></div></div>
+            <div class="bar"></div><div class="bar"></div>
+            <div class="row-label">3 · Operationalize</div>
+            <div class="bar"></div><div class="bar"></div>
+            <div class="bar"><div class="bar-fill bar-p3" data-label="Friday rhythm · Closed loop"></div></div>
+            <div class="bar"></div>
+            <div class="row-label">4 · Scale</div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"><div class="bar-fill bar-p4" data-label="Budget moves live"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 8 — PHASE 1 -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">08 / 17</div></div>
+    <div class="body">
+      <div class="phase-tag-row"><div class="phase-tag">Phase 1</div><div class="phase-days">DAYS 1–30</div></div>
+      <h1 class="phase-title">Inventory + Pilot Selection</h1>
+      <p class="phase-objective">Establish baseline visibility on every brand AND select the pilot — knowns vs. unknowns scored honestly, brand-protected items respected.</p>
+      <div class="phase-cols">
+        <div>
+          <h4>Day 30 Deliverables</h4>
+          <ul>
+            <li><strong>Brand Stack Inventory + Standardization Matrix</strong> — every brand's tooling in one comparable view</li>
+            <li><strong>Tracking Audit</strong> — gap list ranked by impact × ease of fix</li>
+            <li><strong>Growth Baseline Scorecard</strong> — all 10 brands, traffic-light confidence per metric</li>
+            <li><strong>Commonality Matrix</strong> — brand scoring on trade, spend, stack, GM receptivity</li>
+            <li><strong>Pilot Brand Selection Memo</strong> — recommendation + sign-off (CMO + Pilot GM + IT)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Discovery Instrument</h4>
+          <ul style="font-size:12px;">
+            <li><strong>Six-dimension audit</strong>: tech stack, data &amp; tracking, knowledge base, process preferences, decision owners, history &amp; sentiment</li>
+            <li><strong>Knowns / Unknowns scoring</strong>: documented · tribal · suspected · unknown</li>
+            <li><strong>Four-bucket classification</strong>: Must-have · Nice-to-have · Brand-protected · Leave-alone</li>
+          </ul>
+          <div class="phase-precedent">
+            <div class="pp-label">Portfolio precedent · UTA</div>
+            <p>The TVM accountability project started with an error-log audit across 250+ machines — same muscle: inventory, standardize, prioritize, ship a baseline.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dept-row">
+        <div class="dept-row-h">What each department gets from this phase</div>
+        <div class="dept"><div class="seat-label">Marketing</div><div class="takeaway">First Growth Baseline Scorecard for all 10 brands — confidence ratings on every metric.</div></div>
+        <div class="dept"><div class="seat-label">CEO</div><div class="takeaway">Visibility into the whole portfolio from Day 30. No more guessing which brand needs attention.</div></div>
+        <div class="dept"><div class="seat-label">IT</div><div class="takeaway">Audit surfaces blank Job Tag fields and broken pixels before Phase 2 builds on them.</div></div>
+        <div class="dept"><div class="seat-label">Call Center</div><div class="takeaway">We document the call path; nothing changes — we just learn how data flows through it.</div></div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 9 — PHASE 2 -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">09 / 17</div></div>
+    <div class="body">
+      <div class="phase-tag-row"><div class="phase-tag">Phase 2</div><div class="phase-days">DAYS 31–60</div></div>
+      <h1 class="phase-title">Stabilize on the Pilot</h1>
+      <p class="phase-objective">Build the model on one brand. By day 60: shared tracking governance, hardened scorecard, Power BI dashboard live — replication playbook written in real time.</p>
+      <div class="phase-cols">
+        <div>
+          <h4>Day 60 Deliverables</h4>
+          <ul>
+            <li><strong>Pilot Governance Proposal</strong> — UTM + GTM + ServiceTitan Campaign/Job Tag convention</li>
+            <li><strong>Pilot Scorecard v2</strong> — cleaned, automated, daily refresh</li>
+            <li><strong>Pilot Power BI Dashboard</strong> — production-grade, templated for re-pointing</li>
+            <li><strong>Replication Playbook v0</strong> — written <em>during</em> the build, not after</li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Operating Move</h4>
+          <ul style="font-size:12px;">
+            <li>Convention is <strong>designed</strong> portfolio-friendly — proven on one brand before applied to nine more.</li>
+            <li>Pilot dashboard built on <strong>templated structure</strong>, re-pointable to brand 2 with minimal rework.</li>
+            <li>Playbook in parallel: by day 60, "to apply this to brand 2, do steps A–F" exists.</li>
+          </ul>
+          <div class="phase-precedent">
+            <div class="pp-label">Portfolio precedent · Foxit</div>
+            <p>Built the Python reporting layer that pulled product, billing, support, marketing data into one reconciled model. 72 hrs/wk back to growth work.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dept-row">
+        <div class="dept-row-h">What each department gets from this phase</div>
+        <div class="dept"><div class="seat-label">Marketing</div><div class="takeaway">Pilot governance signed off; Power BI dashboard live with daily refresh.</div></div>
+        <div class="dept"><div class="seat-label">CEO</div><div class="takeaway">One brand fully through governance — the proof object for the cascade decision.</div></div>
+        <div class="dept"><div class="seat-label">IT</div><div class="takeaway">One ServiceTitan + GTM convention validated — the schema brands 2–10 inherit.</div></div>
+        <div class="dept"><div class="seat-label">Call Center</div><div class="takeaway">ServiceTitan Job Tag standard agreed. CSR work doesn't change yet.</div></div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 10 — PHASE 3 -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">10 / 17</div></div>
+    <div class="body">
+      <div class="phase-tag-row"><div class="phase-tag">Phase 3</div><div class="phase-days">DAYS 61–90</div></div>
+      <h1 class="phase-title">Operationalize Pilot + Begin Replication</h1>
+      <p class="phase-objective">Turn the pilot's scorecard into a weekly growth-decision rhythm AND start applying the playbook to brand 2.</p>
+      <div class="phase-cols">
+        <div>
+          <h4>Day 90 Deliverables</h4>
+          <ul>
+            <li><strong>Friday Growth Review (Pilot)</strong> — standing 45-min cadence, "scale / fix / test" framework</li>
+            <li><strong>Closed-Loop Attribution v0</strong> — ad spend → lead → booking → completed service in ServiceTitan</li>
+            <li><strong>Leakage Layer Analysis</strong> — where qualified demand exits the funnel</li>
+            <li><strong>Brand 2 Phase 2 outputs</strong> — governance + scorecard + dashboard live</li>
+            <li><strong>Replication Playbook v1</strong> — refined from brand 2 friction</li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Critical Move</h4>
+          <ul style="font-size:12px;">
+            <li>Closed-loop separates <strong>media performance</strong> from <strong>downstream operational leakage</strong>.</li>
+            <li>Playbook v1 is honest about what brand 2 broke — that's the value of replication while still in build mode.</li>
+          </ul>
+          <div class="phase-precedent">
+            <div class="pp-label">Portfolio precedent · Netgain</div>
+            <p>This phase is where the +250% mid-funnel lift came from. Same sequence — proved on one product motion first, then cascaded across the portfolio.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dept-row">
+        <div class="dept-row-h">What each department gets from this phase</div>
+        <div class="dept"><div class="seat-label">Marketing</div><div class="takeaway">Friday Growth Review live — scale/fix/test framework turns dashboards into decisions.</div></div>
+        <div class="dept"><div class="seat-label">CEO</div><div class="takeaway">Brand 2 starts replication on the proven playbook — the model is portable.</div></div>
+        <div class="dept"><div class="seat-label">IT</div><div class="takeaway">Closed-loop attribution wired through ServiceTitan; no shadow pipelines.</div></div>
+        <div class="dept"><div class="seat-label">Call Center</div><div class="takeaway">Leakage Layer separates lead quality from booking quality. End of double-blame.</div></div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 11 — PHASE 4 -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">11 / 17</div></div>
+    <div class="body">
+      <div class="phase-tag-row"><div class="phase-tag">Phase 4</div><div class="phase-days">DAYS 91–120</div></div>
+      <h1 class="phase-title">Scale Replication + Pilot Outcomes</h1>
+      <p class="phase-objective">The pilot earns the right to make defensible budget moves. Brands 2–3 reach Phase 2. The remaining brands have a queue and a playbook.</p>
+      <div class="phase-cols">
+        <div>
+          <h4>Day 120 Deliverables</h4>
+          <ul>
+            <li><strong>Brand Efficiency Benchmark v1</strong> — CAC, ROAS, revenue per lead, completed-service revenue per dollar (pilot)</li>
+            <li><strong>Budget Move Board (Pilot)</strong> — first defensible shifts, ownership, review dates, reversibility</li>
+            <li><strong>Brands 2–3 Phase 2 outputs</strong> — governance + scorecard + dashboard live</li>
+            <li><strong>Replication Playbook v2</strong> — refined from three applications, ready for portfolio rollout</li>
+            <li><strong>Stack Standardization Roadmap</strong> — cascade order + next 90–180 day priorities</li>
+          </ul>
+        </div>
+        <div>
+          <h4>The Compounding Asset</h4>
+          <ul style="font-size:12px;">
+            <li>Every move is <strong>reversible, measured, and named</strong> — "move $X from paid search to LSAs, expected outcome Y, review in four weeks."</li>
+            <li>Data contracts, governance, playbook <strong>don't wear out</strong>. Each cascade is cheaper than the last.</li>
+          </ul>
+          <div class="phase-precedent">
+            <div class="pp-label">Portfolio precedent · Website Squirrel + UTA</div>
+            <p>Squirrel produced −60%+ CAC by reallocating toward best-LTV segment. UTA's fare-elasticity model produced $2.3M modeled annual lift inside 8% phase-in confidence bands.</p>
+          </div>
+        </div>
+      </div>
+      <div class="dept-row">
+        <div class="dept-row-h">What each department gets from this phase</div>
+        <div class="dept"><div class="seat-label">Marketing</div><div class="takeaway">Brand Efficiency Benchmark + Budget Move Board — first defensible reallocation in market.</div></div>
+        <div class="dept"><div class="seat-label">CEO</div><div class="takeaway">Brands 2–3 reach Phase 2; Stack Standardization Roadmap names next 90–180 days.</div></div>
+        <div class="dept"><div class="seat-label">IT</div><div class="takeaway">Replication Playbook v2 — known-pattern application, not fresh build per brand.</div></div>
+        <div class="dept"><div class="seat-label">Call Center</div><div class="takeaway">Cleaner KPI ownership; conversation shifts from blame to what-stage-is-leaking.</div></div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 12 — DAY 120 LANDING -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">12 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 07 · Day 120 for Leadership</div></div>
+      <h1 class="title">By day 120, IHS has...</h1>
+      <div class="day120-grid" style="margin-top: 12px;">
+        <div class="day120-tile"><h4>One pilot brand fully through the model</h4><p>Friday Growth Review live, closed-loop attribution working, first defensible budget moves in market, GM as a vocal proof point.</p></div>
+        <div class="day120-tile"><h4>Brands 2–3 at Phase 2 state</h4><p>Governance, scorecard, dashboard live. On the path to operating cadence — that's Q2 of year one.</p></div>
+        <div class="day120-tile"><h4>Brands 4–10 with baseline visibility + a queue</h4><p>Phase 1 outputs running, audited, ready for the playbook when their slot comes up.</p></div>
+        <div class="day120-tile"><h4>A proven Replication Playbook v2 + Stack Roadmap</h4><p>Refined from three applications. Forward-looking 90–180 day rollout sequence grounded in pilot evidence — not theory.</p></div>
+      </div>
+      <p style="margin-top: 14px; font-size: 14px; color: var(--navy); font-style: italic; max-width: 90%; font-weight: 600;">And the analyst function is no longer a reporting service desk. It's an embedded growth partner.</p>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 13 — PANELIST CHEAT SHEET -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">13 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 08 · By Seat</div></div>
+      <h1 class="title">Each seat hears a different version of the same plan.</h1>
+      <div class="panel-grid">
+        <div class="panel-card"><div class="seat">CEO</div><div class="frame">"Earn the right to recommend across ten brands by proving it on one. Risk-managed cascade, defensible budget moves by day 120."</div><div class="lead-with"><strong>Proof:</strong> Website Squirrel — 60%+ CAC reduction, 15% YoY profit. Same method, applied to one segment first.</div></div>
+        <div class="panel-card"><div class="seat">VP Marketing</div><div class="frame">"We pick the pilot together by day 30. Model live by day 60. Rhythm by day 90. Brands 2–3 in flight by day 120."</div><div class="lead-with"><strong>Proof:</strong> Netgain +250% mid-funnel lift came from running the model on one product motion first, then cascading.</div></div>
+        <div class="panel-card"><div class="seat">Call Center</div><div class="frame">"Closed-loop attribution proven on the pilot first. Once it works there, your team gets cleaner accountability across every brand."</div><div class="lead-with"><strong>Proof:</strong> Phase 3 Leakage Layer separates lead-quality from booking issues. ServiceTitan Job Tag standard in Phase 2.</div></div>
+        <div class="panel-card"><div class="seat">IT</div><div class="frame">"One ServiceTitan + CallRail + UTM convention to validate first. Cascading is known-pattern application, not fresh build."</div><div class="lead-with"><strong>Proof:</strong> Foxit unified four-system data layer. IT co-authors the Pilot Governance Proposal.</div></div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 14 — DISCOVERY FRAMEWORK -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">14 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 09 · Discovery Framework</div></div>
+      <h1 class="title">Observe before changing. Respect what's working.</h1>
+      <div class="framework-flex">
+        <div class="framework-left">
+          <p style="font-size:14px;line-height:1.45;color:var(--ink);max-width:96%;">Each brand gets the same six-dimension audit: tech stack, data &amp; tracking, knowledge base, process preferences, decision owners, history &amp; sentiment. Every observation gets <strong>knowns/unknowns scoring</strong> and a <strong>four-bucket classification</strong>.</p>
+          <div class="framework-buckets">
+            <div class="bucket"><h5>Must-have</h5><p>Broken or missing inside marketing's lane — pixel not firing, no UTM convention, no closed loop.</p></div>
+            <div class="bucket"><h5>Nice-to-have</h5><p>Improvable, would help but not urgent. Better A/B testing, ad-creative versioning.</p></div>
+            <div class="bucket"><h5>Brand-protected</h5><p>GM has a strong preference. Document, observe, leave alone unless it blocks measurement.</p></div>
+            <div class="bucket"><h5>Leave-alone</h5><p>Outside marketing scope: CSR scripts, dispatch logic, technician quoting. Observe only.</p></div>
+          </div>
+        </div>
+        <div class="framework-right">
+          <h4 style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--steel);margin-bottom:12px;padding-bottom:5px;border-bottom:2px solid var(--gold);font-weight:700;">The Political Innovation</h4>
+          <p style="font-size:13px;line-height:1.5;color:var(--ink);margin-bottom:12px;">When a GM sees their long-standing preference flagged as <strong>brand-protected</strong> instead of as a standardization target, the conversation shifts from defense to collaboration.</p>
+          <p style="font-size:13px;line-height:1.5;color:var(--ink);margin-bottom:12px;">GMs start telling me which preferences are real and which are habits they wouldn't mind losing.</p>
+          <div class="pull-quote"><p class="pq-text">"My job is to make the trustworthy data layer; <strong>it's the GMs' job to decide what to do with it.</strong> I make the case, they make the call."</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 15 — OPERATING CADENCE -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">15 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 10 · Operating Cadence</div></div>
+      <h1 class="title">Five meetings. Clear decision rights. No status theatre.</h1>
+      <div class="cadence-grid">
+        <div class="meeting-h">Meeting</div><div class="meeting-h">Cadence</div><div class="meeting-h">Purpose</div>
+        <div class="meeting-name">Jacqueline 1:1</div><div class="meeting-cadence">Weekly · 30 min</div><div class="meeting-purpose">Priorities, blockers, executive readout. The relationship that runs the project.</div>
+        <div class="meeting-name">Data / IT working session</div><div class="meeting-cadence">Weekly · 30–45 min</div><div class="meeting-purpose">Access, schema, refresh, source issues. Co-authored data contract — IT is not downstream.</div>
+        <div class="meeting-name">Pilot GM check-in</div><div class="meeting-cadence">Weekly · Phase 2–3</div><div class="meeting-purpose">Adoption, brand context, friction. The pilot lives or dies on local champion.</div>
+        <div class="meeting-name">Friday Growth Review</div><div class="meeting-cadence">Weekly · From Phase 3</div><div class="meeting-purpose">Scale / fix / test decisions. CMO + Pilot GM + Call Center + Steve.</div>
+        <div class="meeting-name">Day-gate review</div><div class="meeting-cadence">Day 30 · 60 · 90 · 120</div><div class="meeting-purpose">Accept deliverables. Approve next gate. The "is the plan working?" checkpoint.</div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 16 — RISKS -->
+  <div class="slide">
+    <div class="hdr"><div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div><div class="hdr-right">16 / 17</div></div>
+    <div class="body">
+      <div class="eyebrow"><div class="dash"></div><div class="tag">Section 11 · Risks</div></div>
+      <h1 class="title">Five risks I expect — and the surface they break on first.</h1>
+      <div class="risk-grid">
+        <div class="risk-card"><div class="risk-h">Other GMs feel deprioritized while the pilot runs</div><div class="risk-mit"><strong>Mitigation:</strong> Every brand still gets Phase 1 baseline visibility from day 30. Roadmap names the cascade order.</div></div>
+        <div class="risk-card"><div class="risk-h">Wrong pilot brand picked</div><div class="risk-mit"><strong>Mitigation:</strong> Commonality Matrix is the explicit input. Pilot Selection Memo at day 30 has CMO + Pilot GM + IT sign-off.</div></div>
+        <div class="risk-card"><div class="risk-h">ServiceTitan data quality gaps</div><div class="risk-mit"><strong>Mitigation:</strong> Phase 1 audit surfaces them. Blank Job Tag fields become a Phase 2 workstream — not a Phase 3 surprise.</div></div>
+        <div class="risk-card"><div class="risk-h">Pilot succeeds but doesn't replicate cleanly</div><div class="risk-mit"><strong>Mitigation:</strong> Playbook is written <em>during</em> Phase 2. Brand 2 added in Phase 3 specifically to stress-test it.</div></div>
+        <div class="risk-card"><div class="risk-h">Dashboard gets ignored</div><div class="risk-mit"><strong>Mitigation:</strong> Friday Growth Review from Week 6. Every metric has a named decision owner. If nobody owns it, it gets cut.</div></div>
+        <div class="risk-card"><div class="risk-h">Scope creep into operations or creative</div><div class="risk-mit"><strong>Mitigation:</strong> Charter scope boundaries — observed-only for CSR, dispatch, field ops. I propose only inside marketing's lane.</div></div>
+      </div>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+  <!-- SLIDE 17 — CLOSE -->
+  <div class="slide cover close-slide">
+    <div class="hdr">
+      <div class="hdr-left"><div class="logo-mark">IH<span class="gold">S</span></div><div class="hdr-titles"><div class="hdr-title">Intermountain Home Services</div><div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div></div></div>
+      <div class="hdr-right">17 / 17</div>
+    </div>
+    <div class="body" style="justify-content: center; align-items: center; text-align: center;">
+      <div class="cover-eyebrow"><div class="dash"></div><div class="tag">Close</div></div>
+      <h1 style="text-align: center; max-width: 90%;">By day 120, the question isn't <span class="gold">"do we have a dashboard?"</span></h1>
+      <p class="cover-sub" style="text-align: center; margin: 14px auto 24px auto; max-width: 78%;">It's "<em style="color: var(--gold); font-style: italic;">which budget moves do we now understand well enough to defend?</em>" I've already done this — at Foxit, Netgain, Website Squirrel, and UTA. The 120 days is a sequence I know by heart.</p>
+      <a href="https://stevehill.work/IHS/plan" target="_blank" style="background: var(--gold); color: var(--navy); padding: 12px 26px; border-radius: 2px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 2px; font-weight: 700; text-decoration: none; text-transform: uppercase;">stevehill.work/IHS/plan</a>
+    </div>
+    <div class="ftr"><div>stevehill.work · steve@stevehill.work · 801-850-1253</div><div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS</div></div>
+  </div>
+
+</div>
+
+<div class="hint">← → keys to navigate · F for fullscreen · P for print view</div>
+<div class="nav">
+  <button onclick="prev()" title="Previous (←)">‹</button>
+  <span class="counter" id="counter">01 / 17</span>
+  <span class="title-label" id="slide-name">Cover</span>
+  <button onclick="next()" title="Next (→)">›</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let idx = 0;
+  const titles = ['Cover', 'The Agreement', 'Working Backwards', 'Why this fits', 'Career proof', 'Pilot then replicate', '120-day arc', 'Phase 1 — Inventory', 'Phase 2 — Stabilize', 'Phase 3 — Operationalize', 'Phase 4 — Scale', 'Day 120 landing', 'Panelist cheat sheet', 'Discovery framework', 'Operating cadence', 'Risks', 'Close'];
+  function show(i) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+    document.getElementById('counter').textContent = String(i + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+    document.getElementById('slide-name').textContent = titles[i] || '';
+  }
+  function next() { idx = Math.min(idx + 1, slides.length - 1); show(idx); }
+  function prev() { idx = Math.max(idx - 1, 0); show(idx); }
+  function go(i) { idx = Math.max(0, Math.min(i, slides.length - 1)); show(idx); }
+  function togglePrintMode() { document.body.classList.toggle('print-mode'); }
+  document.addEventListener('keydown', (e) => {
+    if (document.body.classList.contains('print-mode')) return;
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    }
+    else if (e.key === 'p' || e.key === 'P') { togglePrintMode(); }
+  });
+  document.getElementById('deck').addEventListener('click', (e) => {
+    if (document.body.classList.contains('print-mode')) return;
+    if (e.target.closest('.nav') || e.target.closest('.toggle-print') || e.target.closest('a')) return;
+    next();
+  });
+  show(0);
+</script>
+
+</body>
+</html>

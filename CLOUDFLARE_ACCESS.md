@@ -1,11 +1,12 @@
 # Cloudflare Access Setup for the IHS Plan
 
-The production site includes two IHS routes:
+The production site includes three IHS routes:
 
 - Public or lightly shared overview: `/IHS`
-- Protected plan: `/IHS-120-Day-Plan`
+- Protected plan: `/IHS-120-Day-Plan` and `/IHS-120-Day-Plan.html`
+- Protected live presentation: `/IHS-Round3-Presentation` and `/IHS-Round3-Presentation.html`
 
-Use Cloudflare Access to protect only the detailed plan route.
+Use Cloudflare Access to protect the detailed plan and live presentation routes.
 
 ## Recommended Policy
 
@@ -25,11 +26,23 @@ Use Cloudflare Access to protect only the detailed plan route.
    - Google identity for approved email addresses.
 10. Save and test in an incognito browser before sharing the link.
 
+Repeat the same setup for the presentation route:
+
+- Application name: `Steve Hill IHS Round 3 Presentation`
+- Domain: `stevehill.work`
+- Path: `/IHS-Round3-Presentation`
+
+Also protect the direct `.html` route if your Access setup does not support wildcard paths:
+
+- `/IHS-120-Day-Plan.html`
+- `/IHS-Round3-Presentation.html`
+
 ## Sharing Guidance
 
 Share the protected URL only after the Access policy is active:
 
 `https://stevehill.work/IHS-120-Day-Plan`
+`https://stevehill.work/IHS-Round3-Presentation`
 
 Keep the broader portfolio public:
 
