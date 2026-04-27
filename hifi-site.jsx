@@ -662,6 +662,165 @@ const ResumePageSite = () => {
   );
 };
 
+const IHS_NEEDS = [
+  ["A", "Lead & Attribution", "UTM taxonomy, lead source tracking, first-touch vs. last-touch, multi-touch attribution, and offline attribution via media-mix thinking."],
+  ["B", "Funnel & Conversion", "Stage-level funnel dashboards, call-center conversion, speed-to-first-touch, booking leakage, and source quality diagnostics."],
+  ["C", "CAC, ROAS & LTV", "Channel-level CAC, ROAS, cohort LTV, payback period, LTV:CAC, and brand-by-brand budget decisions."],
+  ["D", "Operational Feedback", "Marketing-to-service-completion linkage, complaint signals, revenue per lead, retention, reviews, and source-to-quality feedback."],
+  ["E", "Data Infrastructure", "CRM, marketing platform, analytics, call-tracking, ServiceTitan-like operational systems, data contracts, and lead-routing automation."],
+  ["F", "AI & Automation", "Automated reporting, narrative summaries, anomaly detection, data-quality alerts, and fewer manual reporting hours."]
+];
+
+const IHS_PHASES = [
+  ["Days 1-30", "Inventory and baseline", "Confirm the current stack, source fields, call tracking, funnel definitions, and the first version of a brand stack inventory.", ["Brand Stack Inventory & Standardization Matrix", "Growth baseline scorecard draft", "Current-state funnel definitions"]],
+  ["Days 31-60", "Tracking governance", "Align on UTM taxonomy, source definitions, call disposition fields, booking-stage logic, and the first data-quality checks.", ["Shared Tracking Governance Proposal", "Source-quality QA checklist", "Lead-to-booking field map"]],
+  ["Days 61-90", "Pilot scorecard and diagnosis", "Launch one pilot scorecard with spend, calls, booked work, CAC, ROAS, revenue, and the stage where leakage is happening.", ["Pilot weekly growth scorecard", "Funnel leak report", "Channel efficiency readout"]],
+  ["Days 91-120", "Testing rhythm and rollout", "Turn the scorecard into a weekly scale/fix/test operating rhythm and define the roadmap for the next brands.", ["Stack Standardization Roadmap", "Growth-testing backlog", "Executive decision rhythm"]]
+];
+
+const IHS_STACK = [
+  ["Observed current public stack", "The public footprint appears partly standardized at the operating layer and more siloed at the web/tracking layer.", ["WordPress on most brand sites", "WP Engine + Cloudflare on most sites", "GTM present but container IDs vary", "ServiceTitan appears likely as the operating layer", "Power BI named in the role description", "Google Ads / Meta / CallRail appear uneven by brand"]],
+  ["Target standardized growth stack", "The target is not one-size-fits-all marketing. It is shared measurement, protected brand identity, and clean source-to-booked-job visibility.", ["Shared UTM and lead-source taxonomy", "Call tracking connected to campaign/source", "CRM and operating-system handoff fields", "Power BI scorecards with confidence labels", "Weekly scale/fix/test cadence", "Feedback loop from service completion, NPS, reviews, repeat, and referral"]]
+];
+
+const IHSLandingPageSite = () => (
+  <SiteShellHiFi active="home">
+    <BlogHeroHiFi
+      eyebrow="Private interview packet"
+      title={<>IHS-specific <span className="paper-cut">growth operations packet.</span></>}
+      lead="This page separates role-specific material from the public portfolio. The detailed 120-day plan should be protected with Cloudflare Access before the link is shared."
+      noteTitle="Recommended access model."
+      note="Keep the overview lightweight. Protect the detailed plan route at the Cloudflare edge so the content is not exposed as a public page."
+      actions={<><a className="btn btn-filled" href="IHS-120-Day-Plan.html">Open 120-day plan</a><a className="btn" href="HowIWork.html">How I work</a></>}
+    />
+    <div className="blog-rail-layout">
+      <SideRailHiFi links={[["#packet", "Packet"], ["#focus", "Operating focus"], ["#access", "Access"]]} />
+      <div>
+        <section id="packet" className="blog-section">
+          <SectionIntroHiFi eyebrow="Packet overview" title="A role-specific layer built on top of the public portfolio." copy="The public site shows the broader operating model. This section narrows the lens to home-services growth operations, attribution, call intake, booked jobs, service completion, repeat, referral, and testing cadence." />
+          <div className="pillar-ledger site-principle-ledger">
+            {[["01 / Context", "Why this role needs an operating system", "Marketing performance depends on clean source capture, call intake, booking quality, completed revenue, and feedback from the customer experience."], ["02 / Plan", "How I would approach the first 120 days", "Start with inventory and definitions, then build governance, pilot the scorecard, and turn it into a weekly testing rhythm."], ["03 / Proof", "How the portfolio maps to the role", "Foxit, Netgain, Website Squirrel, and UTA show the same pattern: make the handoff visible, then turn the signal into action."]].map(([num, title, copy]) => (
+              <div className="pillar-line" key={title}><div className="pillar-number">{num}</div><h3>{title}</h3><p>{copy}</p></div>
+            ))}
+          </div>
+        </section>
+        <section id="focus" className="blog-section">
+          <SectionIntroHiFi eyebrow="Operating focus" title="The six needs the protected plan expands." copy="These are the workstreams the detailed plan organizes into a practical first-120-days sequence." />
+          <div className="funnel-report-grid">
+            {IHS_NEEDS.map(([code, title, copy]) => (
+              <article className="funnel-report-card" key={title}>
+                <div className="funnel-report-index">{code}</div>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section id="access" className="blog-section">
+          <div className="blog-note-band">
+            <h3>Protect the detailed plan, not the whole portfolio.</h3>
+            <p>The clean setup is to leave this overview public or semi-private, then use Cloudflare Access on only <strong>/IHS-120-Day-Plan.html</strong>. That keeps the main portfolio easy to browse while the interview-specific plan requires authentication.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </SiteShellHiFi>
+);
+
+const IHSPlanPageSite = () => (
+  <SiteShellHiFi active="home">
+    <BlogHeroHiFi
+      eyebrow="Access-controlled plan / IHS"
+      title={<>120-day plan for <span className="paper-cut">Intermountain Home Services.</span></>}
+      lead="The goal is to build a trusted measurement layer for growth testing: capture the funnel cleanly, test fast, see impact quickly, stop weak ideas, and scale wins across brands."
+      noteTitle="Bottom line."
+      note="Jacqueline should have a practical weekly view of services booked per day, calls per day, ROAS, CAC, booking quality, revenue, and source confidence."
+      actions={<><a className="btn btn-filled" href="#plan-phases">Jump to plan</a><a className="btn" href="IHS.html">Packet overview</a></>}
+    />
+    <div className="blog-rail-layout">
+      <SideRailHiFi links={[["#bottom-line", "Bottom line"], ["#needs", "Needs matrix"], ["#lifecycle", "Lifecycle"], ["#stack", "Stack"], ["#scorecard", "Scorecard"], ["#plan-phases", "120 days"], ["#access", "Access setup"]]} />
+      <div>
+        <section id="bottom-line" className="blog-section">
+          <SectionIntroHiFi eyebrow="Bottom line" title="The first win is a reliable operating rhythm, not a prettier dashboard." copy="The first 120 days should prove version one of the measurement operating system: shared funnel language, cleaner source capture, a pilot scorecard, and a repeatable scale/fix/test meeting cadence." />
+          <div className="site-score-row">
+            {[["North Star", "Services booked / day", "The main operating metric"], ["Demand", "Calls / day", "Upstream demand pressure"], ["Efficiency", "ROAS", "Media return with source confidence"], ["Cost", "CAC", "Acquisition cost after quality filters"], ["Quality", "Booked-job rate", "Lead-to-booking handoff strength"], ["Trust", "Source confidence", "Measured vs. inferred attribution"]].map(([label, value, copy]) => (
+              <div className="site-score-card" key={label}><span>{label}</span><strong>{value}</strong><p>{copy}</p></div>
+            ))}
+          </div>
+        </section>
+        <section id="needs" className="blog-section">
+          <SectionIntroHiFi eyebrow="Needs matrix" title="Six connected operating needs." copy="This is the role viewed as a system: attribution, funnel conversion, unit economics, operational feedback, data connections, and automation." />
+          <div className="funnel-report-grid">
+            {IHS_NEEDS.map(([code, title, copy]) => (
+              <article className="funnel-report-card" key={title}>
+                <div className="funnel-report-index">{code}</div>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+        <section id="lifecycle" className="blog-section">
+          <SectionIntroHiFi eyebrow="Lifecycle map" title="The measurement layer should follow the customer." copy="The work runs from the first marketing touch through call intake, booking, service completion, follow-up, repeat, and referral. The best scorecard makes those handoffs visible." />
+          <div className="site-lifecycle-line">
+            {[["First touch", "Channel, campaign, offer, and source capture."], ["Lead intake", "Call/form, answer rate, speed, and routing quality."], ["Qualification / booking", "Booked-job rate, service type, and booking lag."], ["Service delivery", "Completed work, revenue, cancel/no-show, and source-to-revenue match."], ["Follow-up / repeat", "Reactivation, maintenance, review, and retention signals."], ["Referral / promoter", "NPS, referral, review velocity, and source quality feedback."]].map(([stage, note], idx) => (
+              <div className={`site-lifecycle-stage ${idx === 1 || idx === 2 || idx === 3 ? "is-active" : ""}`} key={stage}>
+                <span>Stage {idx + 1}</span>
+                <h3>{stage}</h3>
+                <p>{note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section id="stack" className="blog-section">
+          <SectionIntroHiFi eyebrow="Stack framing" title="Observed current public stack vs. target standardized growth stack." copy="The implication to validate: the organization appears partly standardized at the operating layer and still more siloed at the web/tracking layer." />
+          <div className="attribution-board">
+            {IHS_STACK.map(([title, copy, points]) => (
+              <div className="attribution-copy" key={title}>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+                <div className="metric-chip-row">
+                  {points.map((point) => <span key={point}>{point}</span>)}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section id="scorecard" className="blog-section">
+          <SectionIntroHiFi eyebrow="Example deliverable" title="Growth baseline scorecard." copy="A practical scorecard should make the weekly question simple: what should we scale, what should we fix, what should we test, and what should we watch?" />
+          <div className="site-score-row site-score-row-wide">
+            {[["Spend", "$42K", "Media investment"], ["Calls / day", "118", "Demand pressure"], ["Cost / lead", "$86", "Top-funnel cost"], ["Services booked / day", "46", "North Star"], ["Cost / booked customer", "$221", "Cost to real goal"], ["Booked-job rate", "39%", "Handoff quality"], ["Revenue", "$186K", "Booked/completed value"], ["ROAS", "4.4x", "Media efficiency"], ["Repeat / referral", "18%", "Downstream quality"], ["NPS", "71", "Promoter signal"], ["Source confidence", "84%", "Tracking trust"], ["Next action", "Fix", "Call answer gap"]].map(([label, value, copy]) => (
+              <div className="site-score-card" key={label}><span>{label}</span><strong>{value}</strong><p>{copy}</p></div>
+            ))}
+          </div>
+        </section>
+        <section id="plan-phases" className="blog-section">
+          <SectionIntroHiFi eyebrow="120-day plan" title="A credible first implementation window for one person." copy="This spreads the work into four phases so the plan is ambitious without pretending one analyst can standardize every system at once." />
+          <div className="post-timeline">
+            {IHS_PHASES.map(([days, title, copy, deliverables]) => (
+              <div className="post-line" key={days}>
+                <div className="post-line-date">{days}</div>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                  <div className="metric-chip-row">{deliverables.map((item) => <span key={item}>{item}</span>)}</div>
+                </div>
+                <div className="post-line-topic">Phase</div>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section id="access" className="blog-section">
+          <div className="blog-note-band">
+            <h3>Access note.</h3>
+            <p>This page is designed to be protected in Cloudflare Access at the route <strong>/IHS-120-Day-Plan.html</strong>. Do not share the direct live link until the Access policy is active.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </SiteShellHiFi>
+);
+
 const CaseStudyPageSite = ({ cfg }) => {
   const Preview = cfg.preview;
   const reportExamples = CASE_REPORT_EXAMPLES[cfg.slug] || [];
@@ -780,6 +939,8 @@ Object.assign(window, {
   DashboardsPageSite,
   ExamplesPageSite,
   ResumePageSite,
+  IHSLandingPageSite,
+  IHSPlanPageSite,
   CaseStudyPageSite,
   ReviewPageSite,
 });
