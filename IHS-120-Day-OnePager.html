@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IHS · 120-Day Plan One-Pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #0F2A44;
+    --navy-2:    #1A3D5E;
+    --steel:     #2D6BA0;
+    --steel-2:   #3E8AC7;
+    --gold:      #D8A94B;
+    --gold-dark: #B58A2C;
+    --white:     #FFFFFF;
+    --paper:     #F7F9FB;
+    --grey-lt:   #E2E6EA;
+    --grey-mid:  #7A8898;
+    --grey-dark: #4A5B70;
+    --ink:       #1A1A1A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: #EAE6DC; color: var(--ink); }
+
+  .page {
+    width: 11in;
+    min-height: 8.5in;
+    background: var(--white);
+    margin: 18px auto;
+    padding: 0;
+    box-shadow: 0 6px 28px rgba(0,0,0,0.18);
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Header strip */
+  .hdr {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.16in 0.5in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--gold);
+  }
+  .hdr-left { display: flex; align-items: center; gap: 12px; }
+  .logo-mark {
+    background: var(--white);
+    width: 28px; height: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--navy);
+    font-weight: 900; font-size: 13px; letter-spacing: -0.5px;
+  }
+  .logo-mark .gold { color: var(--gold); }
+  .hdr-titles { line-height: 1.1; }
+  .hdr-title { font-size: 11px; font-weight: 700; }
+  .hdr-sub { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--gold); letter-spacing: 1.2px; margin-top: 1px; }
+  .hdr-right { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--gold); font-weight: 700; letter-spacing: 1px; text-align: right; line-height: 1.3; }
+  .hdr-stamp { background: var(--gold); color: #3A2B0F; padding: 2px 7px; display: inline-block; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 2px; font-size: 8.5px; }
+
+  /* Body */
+  .body { padding: 0.18in 0.4in; flex: 1; display: flex; flex-direction: column; }
+
+  /* Eyebrow */
+  .eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .eyebrow .dash { width: 16px; height: 3px; background: var(--gold); }
+  .eyebrow .tag { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700; letter-spacing: 1.5px; color: var(--steel); text-transform: uppercase; }
+
+  h1.page-title { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.4px; line-height: 1.15; margin: 0 0 2px 0; }
+  .page-sub { font-size: 9.5px; color: var(--grey-dark); margin-bottom: 6px; }
+
+  /* Day 120 Agreement strip */
+  .agreement {
+    background: var(--paper);
+    border-top: 3px solid var(--gold);
+    padding: 6px 10px;
+    margin-bottom: 6px;
+  }
+  .agreement-h { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700; letter-spacing: 1.2px; color: var(--steel); text-transform: uppercase; margin-bottom: 4px; }
+  .agreement-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .ag-card { background: var(--white); border-left: 3px solid var(--gold); padding: 4px 7px; }
+  .ag-num { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--gold-dark); font-weight: 700; }
+  .ag-name { font-size: 11px; font-weight: 700; color: var(--navy); line-height: 1.1; margin: 1px 0 2px 0; }
+  .ag-desc { font-size: 8.5px; line-height: 1.25; color: var(--grey-dark); }
+
+  /* Strategy banner */
+  .strategy {
+    background: var(--navy);
+    color: var(--white);
+    border-left: 4px solid var(--gold);
+    padding: 6px 12px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .strategy .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .strategy .body-text { font-size: 9.5px; line-height: 1.3; color: var(--white); }
+  .strategy .body-text strong { color: var(--gold); font-weight: 700; }
+
+  /* Gantt */
+  .gantt { background: var(--paper); border-left: 3px solid var(--steel); padding: 5px 10px; margin-bottom: 6px; }
+  .gantt-h { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700; color: var(--steel); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 4px; }
+  .gantt-grid { display: grid; grid-template-columns: 130px repeat(4, 1fr); gap: 2px; font-size: 8.5px; }
+  .gantt-grid .col-h { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--grey-dark); padding: 2px 4px; text-align: center; }
+  .gantt-grid .col-h.first { text-align: left; }
+  .gantt-grid .row-label { padding: 3px 5px; font-weight: 700; color: var(--navy); display: flex; align-items: center; font-size: 9.5px; }
+  .gantt-grid .bar { padding: 3px 5px; }
+  .gantt-grid .bar-fill { height: 10px; }
+  .bar-p1 { background: var(--steel); }
+  .bar-p2 { background: var(--steel-2); }
+  .bar-p3 { background: var(--gold); }
+  .bar-p4 { background: var(--navy); }
+
+  /* Phase cards */
+  .phases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 6px; }
+  .phase { background: var(--paper); border-top: 3px solid var(--gold); padding: 5px 8px; }
+  .phase .days { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700; color: var(--gold-dark); letter-spacing: 1px; }
+  .phase h3 { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; color: var(--navy); margin: 1px 0; line-height: 1.15; }
+  .phase .obj { font-size: 8.5px; color: var(--grey-dark); margin-bottom: 4px; line-height: 1.2; font-style: italic; }
+  .phase ul { font-size: 8.5px; color: var(--ink); line-height: 1.25; padding-left: 11px; margin: 0; }
+  .phase li { margin-bottom: 0; }
+
+  /* Metrics */
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 5px; }
+  .metric { background: var(--navy); color: var(--white); padding: 4px 9px; display: flex; justify-content: space-between; align-items: center; }
+  .metric .l { font-family: 'JetBrains Mono', monospace; font-size: 7.5px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+  .metric .v { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 700; color: var(--white); }
+
+  /* Working-backwards dept strip */
+  .dept-strip { margin-top: 0; }
+  .dept-strip-h { font-family: 'JetBrains Mono', monospace; font-size: 7.5px; font-weight: 700; color: var(--steel); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 3px; }
+  .dept-strip-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+  .dp { background: var(--paper); border-left: 3px solid var(--gold); padding: 3px 7px; }
+  .dp-seat { font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700; color: var(--gold-dark); letter-spacing: 1px; margin-bottom: 1px; text-transform: uppercase; }
+  .dp-text { font-size: 8.5px; line-height: 1.2; color: var(--ink); }
+
+  /* Footer */
+  .ftr {
+    border-top: 2px solid var(--gold);
+    padding: 0.06in 0.5in;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: var(--grey-dark);
+  }
+  .ftr-right { color: var(--navy); font-weight: 700; letter-spacing: 1.2px; }
+
+  /* Print */
+  @media print {
+    @page { size: 11in 8.5in; margin: 0; }
+    html, body { background: #fff; }
+    .page { width: 11in; height: 8.5in; min-height: 8.5in; max-height: 8.5in; margin: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; }
+    .page:last-child { page-break-after: auto; }
+    .print-cta { display: none !important; }
+  }
+
+  .print-cta {
+    position: fixed; top: 14px; right: 14px;
+    background: var(--navy); color: var(--gold);
+    padding: 8px 14px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    cursor: pointer; border: none; letter-spacing: 1px; text-transform: uppercase;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2); z-index: 100;
+  }
+  .print-cta:hover { background: var(--gold); color: var(--navy); }
+</style>
+</head>
+<body>
+
+<button class="print-cta" onclick="window.print()">Print this page</button>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="logo-mark">IH<span class="gold">S</span></div>
+      <div class="hdr-titles">
+        <div class="hdr-title">Intermountain Home Services · 120-Day Plan</div>
+        <div class="hdr-sub">Marketing Operations Analytics  ·  Round 3</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div><span class="hdr-stamp">Round 3 Onsite</span></div>
+      <div>stevehill.work/IHS/plan</div>
+      <div>steve@stevehill.work · 801-850-1253</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="agreement">
+      <div class="agreement-h">Day 120 — what we agree this looks like</div>
+      <div class="agreement-grid">
+        <div class="ag-card"><div class="ag-num">01</div><div class="ag-name">Proper tracking setup</div><div class="ag-desc">Every brand, every channel, every conversion event tagged with the right convention. UTM, GTM, ServiceTitan Campaign + Job Tag fields, call-source mapping.</div></div>
+        <div class="ag-card"><div class="ag-num">02</div><div class="ag-name">Systems communicating</div><div class="ag-desc">Ad platforms, GA4 / GTM, CallRail, ServiceTitan, revenue, reviews — all reconcile through agreed data contracts.</div></div>
+        <div class="ag-card"><div class="ag-num">03</div><div class="ag-name">Reporting + dashboards</div><div class="ag-desc">One portfolio scorecard plus role-specific Power BI views. Daily refresh on the pilot. Every dashboard names a decision owner.</div></div>
+        <div class="ag-card"><div class="ag-num">04</div><div class="ag-name">Leakage identification</div><div class="ag-desc">When a metric drops, the system tells us WHERE: media, intake, booking, dispatch, field ops, billing, or follow-up.</div></div>
+      </div>
+    </div>
+
+    <div class="strategy">
+      <span class="label">Strategy · Pilot, then Replicate</span>
+      <span class="body-text">Ten brands is too many to attack in parallel. <strong>One brand fully through the model first</strong> (selected from a Phase 1 commonality matrix), then cascade — risk shrinks, trust compounds, governance gets negotiated with one GM not ten.</span>
+    </div>
+
+    <div class="gantt">
+      <div class="gantt-h">Timeline · Four phases · 120 days</div>
+      <div class="gantt-grid">
+        <div class="col-h first">Phase</div>
+        <div class="col-h">Days 1–30</div><div class="col-h">Days 31–60</div><div class="col-h">Days 61–90</div><div class="col-h">Days 91–120</div>
+        <div class="row-label">1 — Inventory</div>
+        <div class="bar"><div class="bar-fill bar-p1"></div></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="row-label">2 — Stabilize</div>
+        <div class="bar"></div><div class="bar"><div class="bar-fill bar-p2"></div></div><div class="bar"></div><div class="bar"></div>
+        <div class="row-label">3 — Operationalize</div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"><div class="bar-fill bar-p3"></div></div><div class="bar"></div>
+        <div class="row-label">4 — Scale</div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"><div class="bar-fill bar-p4"></div></div>
+      </div>
+    </div>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="days">DAYS 1 – 30</div>
+        <h3>Inventory + Pilot Selection</h3>
+        <p class="obj">Audit all 10 brands. Build the Commonality Matrix. Pick the pilot.</p>
+        <ul>
+          <li>Tech stack audit per brand</li>
+          <li>Tracking gaps + Commonality Matrix</li>
+          <li>Growth Baseline Scorecard (all 10)</li>
+          <li>Pilot Brand Selection Memo (signed off)</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="days">DAYS 31 – 60</div>
+        <h3>Stabilize on Pilot</h3>
+        <p class="obj">Build the model on one brand. Document the playbook in real time.</p>
+        <ul>
+          <li>Pilot governance signed off</li>
+          <li>Pilot Power BI live (templated)</li>
+          <li>Pilot Scorecard v2 — daily refresh</li>
+          <li>Replication Playbook v0</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="days">DAYS 61 – 90</div>
+        <h3>Operationalize + Begin Replication</h3>
+        <p class="obj">Pilot enters Friday rhythm. Brand 2 starts Phase 2.</p>
+        <ul>
+          <li>Friday Growth Review (pilot)</li>
+          <li>Closed-loop attribution (pilot)</li>
+          <li>Leakage Layer Analysis (pilot)</li>
+          <li>Brand 2 → Phase 2 + Playbook v1</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="days">DAYS 91 – 120</div>
+        <h3>Scale Replication + Pilot Outcomes</h3>
+        <p class="obj">Pilot earns the right to make budget moves. Brands 2–3 reach Phase 2.</p>
+        <ul>
+          <li>Brand Efficiency Benchmark v1 (pilot)</li>
+          <li>Budget Move Board (pilot)</li>
+          <li>Brands 2–3 → Phase 2 outputs</li>
+          <li>Stack Standardization Roadmap</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="l">North Star</div><div class="v">Services booked / day</div></div>
+      <div class="metric"><div class="l">Demand</div><div class="v">Calls / day</div></div>
+      <div class="metric"><div class="l">Media</div><div class="v">ROAS · CAC · RPL</div></div>
+    </div>
+
+    <div class="dept-strip">
+      <div class="dept-strip-h">Working backwards · what each department gets at Day 120</div>
+      <div class="dept-strip-grid">
+        <div class="dp"><div class="dp-seat">Marketing</div><div class="dp-text">Brand Efficiency Benchmark + Budget Move Board. Test framework with fast reads + scaled rollout.</div></div>
+        <div class="dp"><div class="dp-seat">CEO</div><div class="dp-text">Cross-brand visibility from Day 30. Defensible budget moves at Day 120, grounded in pilot evidence.</div></div>
+        <div class="dp"><div class="dp-seat">IT</div><div class="dp-text">One ServiceTitan + CallRail + UTM convention validated. Brands 2–10 inherit, not re-litigate.</div></div>
+        <div class="dp"><div class="dp-seat">Call Center</div><div class="dp-text">Closed-loop attribution. Lead quality vs. booking quality separated. End of double-blame.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ftr">
+    <div>stevehill.work · steve@stevehill.work · 801-850-1253</div>
+    <div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS · PAGE 1 OF 2</div>
+  </div>
+</div>
+
+<!-- PAGE 2 — Deliverables + Proof + Panelist angles -->
+<div class="page">
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="logo-mark">IH<span class="gold">S</span></div>
+      <div class="hdr-titles">
+        <div class="hdr-title">Deliverables, Proof, and Panelist Angles</div>
+        <div class="hdr-sub">What lands on leadership's desk · Where it has been done before</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <div><span class="hdr-stamp">Round 3 Onsite</span></div>
+      <div>stevehill.work · 2026</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <table style="width: 100%; border-collapse: separate; border-spacing: 14px 0; margin-left: -14px;">
+      <tr>
+        <td style="width: 56%; vertical-align: top; padding: 0;">
+          <div class="eyebrow"><div class="dash"></div><div class="tag">Deliverables by 30-day gate</div></div>
+          <div style="margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+              <div style="font-size: 12px; font-weight: 700; color: var(--navy);">Phase 1 — Inventory + Pilot Selection</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold-dark); font-weight: 700;">DAY 30</div>
+            </div>
+            <ul style="font-size: 9.5px; line-height: 1.35; padding-left: 14px; margin: 0; color: var(--ink);">
+              <li><strong style="color: var(--navy);">Brand Stack Inventory &amp; Standardization Matrix</strong> — every brand's tooling in one comparable view</li>
+              <li><strong style="color: var(--navy);">Tracking Audit</strong> — prioritized gap list (impact × ease of fix)</li>
+              <li><strong style="color: var(--navy);">Growth Baseline Scorecard (all 10 brands)</strong> — spend, calls/day, services booked/day, CAC, ROAS, with traffic-light confidence ratings</li>
+              <li><strong style="color: var(--navy);">Commonality Matrix</strong> — brand scoring on trade, spend, stack, GM receptivity, representativeness</li>
+              <li><strong style="color: var(--navy);">Pilot Brand Selection Memo</strong> — recommendation + sign-off (CMO, pilot GM, IT)</li>
+            </ul>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+              <div style="font-size: 12px; font-weight: 700; color: var(--navy);">Phase 2 — Stabilize on Pilot</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold-dark); font-weight: 700;">DAY 60</div>
+            </div>
+            <ul style="font-size: 9.5px; line-height: 1.35; padding-left: 14px; margin: 0; color: var(--ink);">
+              <li><strong style="color: var(--navy);">Pilot Governance Proposal</strong> — UTM, GTM, ServiceTitan Campaign/Job Tag convention, designed to extend to portfolio, signed off by pilot GM + IT</li>
+              <li><strong style="color: var(--navy);">Pilot Scorecard v2</strong> — cleaned, automated, daily refresh</li>
+              <li><strong style="color: var(--navy);">Pilot Weekly Dashboard</strong> — Power BI, production-grade, templated for replication</li>
+              <li><strong style="color: var(--navy);">Replication Playbook v0</strong> — step-by-step guide for applying the model to brand 2</li>
+            </ul>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+              <div style="font-size: 12px; font-weight: 700; color: var(--navy);">Phase 3 — Operationalize + Replicate</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold-dark); font-weight: 700;">DAY 90</div>
+            </div>
+            <ul style="font-size: 9.5px; line-height: 1.35; padding-left: 14px; margin: 0; color: var(--ink);">
+              <li><strong style="color: var(--navy);">Weekly Growth Review (Pilot)</strong> — standing Friday cadence, "scale / fix / test" framework</li>
+              <li><strong style="color: var(--navy);">Closed-Loop Attribution v0 (Pilot)</strong> — ad spend → completed service in ServiceTitan</li>
+              <li><strong style="color: var(--navy);">Leakage Layer Analysis (Pilot)</strong> — where qualified demand exits the funnel</li>
+              <li><strong style="color: var(--navy);">Brand 2 Phase 2 outputs</strong> — governance + scorecard + dashboard live</li>
+              <li><strong style="color: var(--navy);">Replication Playbook v1</strong> — refined from brand 2 application</li>
+            </ul>
+          </div>
+          <div style="margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+              <div style="font-size: 12px; font-weight: 700; color: var(--navy);">Phase 4 — Scale + Pilot Outcomes</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold-dark); font-weight: 700;">DAY 120</div>
+            </div>
+            <ul style="font-size: 9.5px; line-height: 1.35; padding-left: 14px; margin: 0; color: var(--ink);">
+              <li><strong style="color: var(--navy);">Brand Efficiency Benchmark v1 (Pilot)</strong> — CAC, ROAS, revenue-per-lead, with trade and channel cuts</li>
+              <li><strong style="color: var(--navy);">Budget Move Board (Pilot)</strong> — first defensible shifts, ownership, review dates</li>
+              <li><strong style="color: var(--navy);">Brands 2–3 Phase 2 outputs</strong> — governance + scorecard + dashboard live</li>
+              <li><strong style="color: var(--navy);">Replication Playbook v2</strong> — refined from three applications, ready for portfolio rollout</li>
+              <li><strong style="color: var(--navy);">Stack Standardization Roadmap</strong> — cascade order + next 90–180 days of priorities</li>
+            </ul>
+          </div>
+        </td>
+        <td style="width: 44%; vertical-align: top; padding: 0;">
+          <div class="eyebrow"><div class="dash"></div><div class="tag">Where this method has delivered</div></div>
+          <div style="background: var(--paper); border-top: 3px solid var(--gold); padding: 8px 11px; margin-bottom: 10px;">
+            <div style="font-size: 11.5px; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Portfolio precedent — same sequence, prior companies</div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px dashed var(--grey-lt); font-size: 9.5px;">
+              <div style="font-weight: 700; color: var(--navy); font-size: 11px; width: 78px;">Foxit</div>
+              <div style="flex: 1; color: var(--grey-dark); line-height: 1.32;">Unified four-system data layer; lifecycle trigger engine across product, billing, support, marketing.</div>
+              <div style="background: var(--gold); color: #3A2B0F; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; padding: 3px 5px; text-align: center; line-height: 1.15; width: 80px;">72 hrs/wk<br>3× ROI</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px dashed var(--grey-lt); font-size: 9.5px;">
+              <div style="font-weight: 700; color: var(--navy); font-size: 11px; width: 78px;">Netgain</div>
+              <div style="flex: 1; color: var(--grey-dark); line-height: 1.32;">Identified North Star in 30-touchpoint funnel across 6-product portfolio; high-velocity testing.</div>
+              <div style="background: var(--gold); color: #3A2B0F; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; padding: 3px 5px; text-align: center; line-height: 1.15; width: 80px;">+250%<br>mid-funnel</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px dashed var(--grey-lt); font-size: 9.5px;">
+              <div style="font-weight: 700; color: var(--navy); font-size: 11px; width: 78px;">Website<br>Squirrel</div>
+              <div style="flex: 1; color: var(--grey-dark); line-height: 1.32;">Automated SQL lead-scoring + segmentation; reallocation toward the best-LTV segment.</div>
+              <div style="background: var(--gold); color: #3A2B0F; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; padding: 3px 5px; text-align: center; line-height: 1.15; width: 80px;">−60%+<br>lead CAC</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 9.5px;">
+              <div style="font-weight: 700; color: var(--navy); font-size: 11px; width: 78px;">UTA</div>
+              <div style="flex: 1; color: var(--grey-dark); line-height: 1.32;">Fare elasticity + scenario forecasting on $300M+ revenue; TVM vendor SLA enforcement.</div>
+              <div style="background: var(--gold); color: #3A2B0F; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; padding: 3px 5px; text-align: center; line-height: 1.15; width: 80px;">$2.3M<br>modeled</div>
+            </div>
+          </div>
+
+          <div class="eyebrow"><div class="dash"></div><div class="tag">How to hear this by seat</div></div>
+          <table style="width: 100%; border-collapse: separate; border-spacing: 6px 6px; margin-top: 4px; margin-left: -6px; margin-right: -6px;">
+            <tr>
+              <td style="width: 50%; vertical-align: top;">
+                <div style="background: var(--white); border: 1px solid var(--grey-lt); border-top: 3px solid var(--gold); padding: 7px 9px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--gold-dark); margin-bottom: 3px;">CEO</div>
+                  <div style="font-size: 10px; line-height: 1.32; color: var(--ink);">Earn the right to recommend across 10 brands by proving on one. Risk-managed cascade, defensible budget moves by day 120.</div>
+                </div>
+              </td>
+              <td style="width: 50%; vertical-align: top;">
+                <div style="background: var(--white); border: 1px solid var(--grey-lt); border-top: 3px solid var(--gold); padding: 7px 9px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--gold-dark); margin-bottom: 3px;">VP Marketing</div>
+                  <div style="font-size: 10px; line-height: 1.32; color: var(--ink);">Pilot picked together by day 30. Model live by day 60. Rhythm by day 90. Brands 2–3 in flight by day 120.</div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 50%; vertical-align: top;">
+                <div style="background: var(--white); border: 1px solid var(--grey-lt); border-top: 3px solid var(--gold); padding: 7px 9px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--gold-dark); margin-bottom: 3px;">Call Center</div>
+                  <div style="font-size: 10px; line-height: 1.32; color: var(--ink);">Closed-loop attribution proven on the pilot first; cascades to every brand. Cleaner accountability, no double-blame.</div>
+                </div>
+              </td>
+              <td style="width: 50%; vertical-align: top;">
+                <div style="background: var(--white); border: 1px solid var(--grey-lt); border-top: 3px solid var(--gold); padding: 7px 9px;">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--gold-dark); margin-bottom: 3px;">IT</div>
+                  <div style="font-size: 10px; line-height: 1.32; color: var(--ink);">One ServiceTitan + CallRail + UTM convention to validate first. Cascading is known-pattern application, not fresh build.</div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="ftr">
+    <div>Dashboards: stevehill.work/Dashboards · Case studies: stevehill.work/CaseStudies</div>
+    <div class="ftr-right">STEVE HILL · BIG MARKETING ANALYTICS · PAGE 2 OF 2</div>
+  </div>
+</div>
+
+</body>
+</html>

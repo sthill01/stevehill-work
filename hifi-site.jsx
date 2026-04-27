@@ -803,7 +803,7 @@ const IHSPlanPageSite = () => (
       lead="The goal is to build a trusted measurement layer for growth testing: capture the funnel cleanly, test fast, see impact quickly, stop weak ideas, and scale wins across brands."
       noteTitle="Bottom line."
       note="Jacqueline should have a practical weekly view of services booked per day, calls per day, ROAS, CAC, booking quality, revenue, and source confidence."
-      actions={<><a className="btn btn-filled" href="#plan-phases">Jump to plan</a><a className="btn" href="IHS-Round3-Presentation.html">Open Round 3 presentation</a><a className="btn" href="IHS.html">Packet overview</a></>}
+      actions={<><a className="btn btn-filled" href="#plan-phases">Jump to plan</a><a className="btn" href="IHS-120-Day-OnePager.html">Open one-pager</a><a className="btn" href="IHS-Round3-Presentation.html">Open Round 3 presentation</a><a className="btn" href="IHS.html">Packet overview</a></>}
     />
     <div className="blog-rail-layout">
       <SideRailHiFi links={[["#bottom-line", "Bottom line"], ["#project-scorecard", "Project scorecard"], ["#needs", "Needs matrix"], ["#lifecycle", "Lifecycle"], ["#stack", "Stack"], ["#growth-scorecard", "Growth scorecard"], ["#plan-phases", "120 days"], ["#access", "Access setup"]]} />
@@ -973,7 +973,7 @@ const IHSPlanPageSite = () => (
         <section id="access" className="blog-section">
           <div className="blog-note-band">
             <h3>Access note.</h3>
-            <p>This page and the Round 3 presentation are designed to be protected in Cloudflare Access at both the clean and .html routes. Do not share direct live links until the Access policies are active.</p>
+            <p>This page, the one-pager, and the Round 3 presentation are designed to be protected in Cloudflare Access at both the clean and .html routes. Do not share direct live links until the Access policies are active.</p>
           </div>
         </section>
       </div>

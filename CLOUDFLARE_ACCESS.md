@@ -4,6 +4,7 @@ The production site includes three IHS routes:
 
 - Public or lightly shared overview: `/IHS`
 - Protected plan: `/IHS-120-Day-Plan` and `/IHS-120-Day-Plan.html`
+- Protected one-pager: `/IHS-120-Day-OnePager` and `/IHS-120-Day-OnePager.html`
 - Protected live presentation: `/IHS-Round3-Presentation` and `/IHS-Round3-Presentation.html`
 
 Use Cloudflare Access to protect the detailed plan and live presentation routes.
@@ -32,9 +33,16 @@ Repeat the same setup for the presentation route:
 - Domain: `stevehill.work`
 - Path: `/IHS-Round3-Presentation`
 
+Repeat the same setup for the one-pager route:
+
+- Application name: `Steve Hill IHS 120-Day One-Pager`
+- Domain: `stevehill.work`
+- Path: `/IHS-120-Day-OnePager`
+
 Also protect the direct `.html` route if your Access setup does not support wildcard paths:
 
 - `/IHS-120-Day-Plan.html`
+- `/IHS-120-Day-OnePager.html`
 - `/IHS-Round3-Presentation.html`
 
 ## Sharing Guidance
@@ -42,6 +50,7 @@ Also protect the direct `.html` route if your Access setup does not support wild
 Share the protected URL only after the Access policy is active:
 
 `https://stevehill.work/IHS-120-Day-Plan`
+`https://stevehill.work/IHS-120-Day-OnePager`
 `https://stevehill.work/IHS-Round3-Presentation`
 
 Keep the broader portfolio public:
