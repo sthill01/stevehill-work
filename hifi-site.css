@@ -1,12 +1,12 @@
 /* HiFiBlog-inspired full-site variants. */
 
-.site-footer-gpt {
+.site-footer {
   background: var(--ink);
   color: var(--paper);
   padding: 34px 32px;
 }
 
-.site-footer-gpt-inner {
+.site-footer-inner {
   max-width: 1280px;
   margin: 0 auto;
   display: flex;
@@ -16,7 +16,7 @@
   flex-wrap: wrap;
 }
 
-.site-footer-gpt a {
+.site-footer a {
   color: var(--accent-amber);
   font-weight: 700;
 }

@@ -1,4 +1,4 @@
-const SITE_NAV_GPT = [
+const SITE_NAV = [
   ["home", "Home", "index.html"],
   ["process", "How I Work", "HowIWork.html"],
   ["dash", "Dashboards", "Dashboards.html"],
@@ -7,7 +7,7 @@ const SITE_NAV_GPT = [
   ["blog", "Blog", "Blog.html"],
 ];
 
-const NavHiFiGPT = ({ active = "home" }) => {
+const NavHiFi = ({ active = "home" }) => {
   const { Logo } = window;
   return (
     <nav className="nav nav-flat">
@@ -29,7 +29,7 @@ const NavHiFiGPT = ({ active = "home" }) => {
           </div>
         </div>
         <div className="nav-links">
-          {SITE_NAV_GPT.map(([key, label, href]) => (
+          {SITE_NAV.map(([key, label, href]) => (
             <a key={key} className={`nav-link ${active === key ? "is-active" : ""}`} href={href}>
               {label}
             </a>
@@ -43,9 +43,9 @@ const NavHiFiGPT = ({ active = "home" }) => {
   );
 };
 
-const SiteFooterHiFiGPT = () => (
-  <footer className="site-footer-gpt">
-    <div className="site-footer-gpt-inner">
+const SiteFooterHiFi = () => (
+  <footer className="site-footer">
+    <div className="site-footer-inner">
       <div>
         <strong>Steve Hill</strong>
         <div style={{ fontFamily: "var(--mono)", fontSize: 11, color: "rgba(251,250,245,.62)", marginTop: 5 }}>
@@ -61,15 +61,15 @@ const SiteFooterHiFiGPT = () => (
   </footer>
 );
 
-const SiteShellHiFiGPT = ({ active, children }) => (
+const SiteShellHiFi = ({ active, children }) => (
   <div className="blog-mock">
-    <NavHiFiGPT active={active} />
+    <NavHiFi active={active} />
     {children}
-    <SiteFooterHiFiGPT />
+    <SiteFooterHiFi />
   </div>
 );
 
-const BlogHeroHiFiGPT = ({ eyebrow, title, lead, noteTitle, note, actions }) => (
+const BlogHeroHiFi = ({ eyebrow, title, lead, noteTitle, note, actions }) => (
   <section className="blog-hero">
     <div className="blog-hero-inner">
       <div>
@@ -87,7 +87,7 @@ const BlogHeroHiFiGPT = ({ eyebrow, title, lead, noteTitle, note, actions }) => 
   </section>
 );
 
-const SideRailHiFiGPT = ({ label = "On this page", links }) => (
+const SideRailHiFi = ({ label = "On this page", links }) => (
   <aside className="blog-side-rail" aria-label={label}>
     <div className="blog-side-label">{label}</div>
     <nav>
@@ -98,7 +98,7 @@ const SideRailHiFiGPT = ({ label = "On this page", links }) => (
   </aside>
 );
 
-const SectionIntroHiFiGPT = ({ eyebrow, title, copy }) => (
+const SectionIntroHiFi = ({ eyebrow, title, copy }) => (
   <div className="blog-section-head">
     <div className="blog-kicker">{eyebrow}</div>
     <div>
@@ -108,7 +108,7 @@ const SectionIntroHiFiGPT = ({ eyebrow, title, copy }) => (
   </div>
 );
 
-const LedgerHiFiGPT = ({ items }) => (
+const LedgerHiFi = ({ items }) => (
   <div className="site-ledger-grid">
     {items.map(([value, label]) => (
       <div className="site-ledger-cell" key={label}>
@@ -119,7 +119,7 @@ const LedgerHiFiGPT = ({ items }) => (
   </div>
 );
 
-const MethodStripHiFiGPT = ({ steps }) => (
+const MethodStripHiFi = ({ steps }) => (
   <div className="method-strip">
     {steps.map(([n, label]) => (
       <div className="method-step" key={label}>
@@ -130,16 +130,16 @@ const MethodStripHiFiGPT = ({ steps }) => (
   </div>
 );
 
-const DASH_GPT_HIFI = [
+const DASH_HIFI = [
   ["N", "Netgain", "B2B SaaS", "Mid-Funnel Velocity Dashboard", "Attribution, scoring and stage velocity across a six-product portfolio.", "+250% lift", "Case-Netgain.html", "brand-netgain", "PreviewNetgain"],
   ["F", "Foxit", "Document SaaS", "API Client Growth and Activation Funnel", "Activation, expansion and lifecycle visibility across four products.", "72 hrs/wk", "Case-Foxit.html", "brand-foxit", "PreviewFoxit"],
   ["UTA", "Utah Transit Authority", "Operations BI", "TVM Failure Sequences and Service Recovery", "Failure-path analysis, support visibility and recovery prioritization.", "$15K view", "Case-UTA.html", "brand-uta", "PreviewUTA"],
   ["WS", "Website Squirrel", "Lead Gen", "Lead Segmentation and CAC Dashboard", "Lead quality, source economics and CAC payback for spend decisions.", "60%+ CAC drop", "Case-Squirrel.html", "brand-squirrel", "PreviewSquirrel"],
 ];
 
-const DashGridHiFiGPT = () => (
+const DashGridHiFi = () => (
   <div className="dash-grid">
-    {DASH_GPT_HIFI.map(([tag, brand, sub, title, desc, metric, href, brandClass, previewName]) => {
+    {DASH_HIFI.map(([tag, brand, sub, title, desc, metric, href, brandClass, previewName]) => {
       const Preview = window[previewName];
       return (
         <a key={brand} className={`dash-card ${brandClass}`} href={href}>
@@ -158,7 +158,7 @@ const DashGridHiFiGPT = () => (
             <div className="dash-card-desc">{desc}</div>
             <div className="dash-card-foot">
               <span className="tag tag-amber">{metric}</span>
-              <span className="dash-card-open">open GPT example -&gt;</span>
+              <span className="dash-card-open">open example -&gt;</span>
             </div>
           </div>
         </a>
@@ -167,14 +167,14 @@ const DashGridHiFiGPT = () => (
   </div>
 );
 
-const EXAMPLES_GPT_HIFI = [
+const EXAMPLES_HIFI = [
   ["01", "Foxit", "Lifecycle reporting", "Unified product, billing, support and marketing signals into one lifecycle system.", "Reporting trust", "Case-Foxit.html"],
   ["02", "Website Squirrel", "Acquisition quality", "Cut lead CAC by prioritizing source feedback, routing and segment quality.", "CAC efficiency", "Case-Squirrel.html"],
   ["03", "Netgain", "Attribution and velocity", "Found the mid-funnel signal inside a long, multi-touch SaaS buyer journey.", "Conversion lift", "Case-Netgain.html"],
   ["04", "UTA", "Operations BI", "Mapped ticket-machine failure paths into an action queue and vendor accountability view.", "Service visibility", "Case-UTA.html"],
 ];
 
-const EXAMPLE_FUNNEL_REPORTS_GPT = [
+const EXAMPLE_FUNNEL_REPORTS = [
   ["First touch", "Which source created the demand worth following?", ["Spend", "CTR", "CPL", "Qualified visits"]],
   ["Lead intake", "Did the inquiry get captured, routed and answered?", ["Calls / day", "Answer rate", "Source match", "Cost / lead"]],
   ["Booking", "Which leads became real scheduled work or sales motion?", ["Booked rate", "Speed to touch", "Cost / booked customer", "Lead quality"]],
@@ -183,7 +183,7 @@ const EXAMPLE_FUNNEL_REPORTS_GPT = [
   ["Feedback", "What should the next test, fix or scale decision be?", ["Win / lose / learn", "Test owner", "Confidence", "Next move"]]
 ];
 
-const EXAMPLE_CHANNEL_REPORTS_GPT = [
+const EXAMPLE_CHANNEL_REPORTS = [
   ["Paid search", "High-intent demand", "ROAS, booked-job rate, CAC, query quality and call-source confidence."],
   ["Paid social", "Demand creation", "CPL, assisted conversions, creative fatigue and downstream source quality."],
   ["Organic / SEO", "Durable demand", "Service-page conversion, organic calls, content assists and local visibility."],
@@ -192,7 +192,7 @@ const EXAMPLE_CHANNEL_REPORTS_GPT = [
   ["Offline / direct", "Attribution confidence", "Promo codes, matched calls, branded search lift and source reconciliation."]
 ];
 
-const CASE_REPORT_EXAMPLES_GPT = {
+const CASE_REPORT_EXAMPLES = {
   foxit: [
     ["Activation dashboard", "Which product signals predict paid conversion or expansion?", ["Trial start", "Feature adoption", "Usage depth", "Activation rate", "Expansion signal"]],
     ["Lifecycle revenue report", "Where does product usage connect to billing, support and marketing follow-up?", ["MRR", "Plan tier", "Support status", "Cross-sell path", "Retention risk"]],
@@ -215,9 +215,9 @@ const CASE_REPORT_EXAMPLES_GPT = {
   ]
 };
 
-const ExamplesListHiFiGPT = () => (
+const ExamplesListHiFi = () => (
   <div className="examples-list">
-    {EXAMPLES_GPT_HIFI.map(([idx, brand, theme, title, lever, href]) => (
+    {EXAMPLES_HIFI.map(([idx, brand, theme, title, lever, href]) => (
       <a key={brand} className="example-row" href={href}>
         <div className="example-row-idx">
           <b>{idx}</b>
@@ -234,7 +234,7 @@ const ExamplesListHiFiGPT = () => (
         <div className="example-row-stats">
           <span className="tag tag-amber">{lever}</span>
           <span style={{ fontFamily: "var(--mono)", fontSize: 12, marginTop: 6, fontWeight: 600 }}>
-            read GPT example -&gt;
+            read example -&gt;
           </span>
         </div>
       </a>
@@ -242,9 +242,9 @@ const ExamplesListHiFiGPT = () => (
   </div>
 );
 
-const HomeGPT = () => (
-  <SiteShellHiFiGPT active="home">
-    <BlogHeroHiFiGPT
+const HomePageSite = () => (
+  <SiteShellHiFi active="home">
+    <BlogHeroHiFi
       eyebrow="Steve Hill / marketing ops, BI and analytics"
       title={<>Make the <span className="paper-cut">messy middle</span> usable.</>}
       lead="I build the measurement layer between marketing spend and business outcomes: scorecards, attribution, lifecycle maps, operating dashboards and plain-English decision support."
@@ -253,10 +253,10 @@ const HomeGPT = () => (
       actions={<><a className="btn btn-filled" href="Examples.html">See examples</a><a className="btn" href="HowIWork.html">How I work</a></>}
     />
     <div className="blog-rail-layout">
-      <SideRailHiFiGPT links={[["#proof", "Proof"], ["#operating-system", "Operating system"], ["#dashboards", "Dashboards"], ["#examples", "Examples"], ["#resume", "Resume"]]} />
+      <SideRailHiFi links={[["#proof", "Proof"], ["#operating-system", "Operating system"], ["#dashboards", "Dashboards"], ["#examples", "Examples"], ["#resume", "Resume"]]} />
       <div>
         <section id="proof" className="blog-section">
-          <LedgerHiFiGPT items={[
+          <LedgerHiFi items={[
             ["60%+", "lead CAC reduction through better segmentation and source-quality feedback"],
             ["250%", "mid-funnel lift by finding the moments that actually moved conversion"],
             ["72 hrs/wk", "manual reporting removed by reconciling product, billing, support and marketing"],
@@ -264,7 +264,7 @@ const HomeGPT = () => (
           ]} />
         </section>
         <section id="operating-system" className="blog-section">
-          <SectionIntroHiFiGPT eyebrow="Operating system" title="The site should read like a working system, not a gallery." copy="Each page answers a different hiring-team question: how I think, what I have built, where the proof lives and what the numbers mean." />
+          <SectionIntroHiFi eyebrow="Operating system" title="The site should read like a working system, not a gallery." copy="Each page answers a different hiring-team question: how I think, what I have built, where the proof lives and what the numbers mean." />
           <div className="pillar-ledger">
             {[
               ["01 / Decision", "Start with the business decision.", "If no action changes, the analysis probably should not happen yet."],
@@ -281,23 +281,23 @@ const HomeGPT = () => (
           </div>
         </section>
         <section id="dashboards" className="blog-section site-dash-tight">
-          <SectionIntroHiFiGPT eyebrow="Dashboards" title="Operating surfaces with a reason to exist." copy="The dashboard library keeps the original card system, but the framing is now about the decision each artifact supports." />
-          <DashGridHiFiGPT />
+          <SectionIntroHiFi eyebrow="Dashboards" title="Operating surfaces with a reason to exist." copy="The dashboard library keeps the original card system, but the framing is now about the decision each artifact supports." />
+          <DashGridHiFi />
         </section>
         <section id="examples" className="blog-section site-example-tight">
-          <SectionIntroHiFiGPT eyebrow="Examples" title="Proof, not archive." copy="Concise STAR stories, lifecycle context and one clear operating takeaway." />
-          <ExamplesListHiFiGPT />
+          <SectionIntroHiFi eyebrow="Examples" title="Proof, not archive." copy="Concise STAR stories, lifecycle context and one clear operating takeaway." />
+          <ExamplesListHiFi />
         </section>
         <section id="resume" className="blog-section">
-          <SectionIntroHiFiGPT eyebrow="Resume" title="The through-line is operating clarity." copy="Marketing operations, BI, attribution, funnel analytics and executive reporting across several operating contexts." />
+          <SectionIntroHiFi eyebrow="Resume" title="The through-line is operating clarity." copy="Marketing operations, BI, attribution, funnel analytics and executive reporting across several operating contexts." />
           <a className="btn btn-filled" href="Resume.html">Open resume page</a>
         </section>
       </div>
     </div>
-  </SiteShellHiFiGPT>
+  </SiteShellHiFi>
 );
 
-const HowIWorkGPT = () => {
+const HowIWorkPageSite = () => {
   const principles = [
     ["01 / Decision", "Lead with the business question", "Start with the decision leadership needs to make, then work backward into the data, report and cadence."],
     ["02 / Readability", "Keep reporting readable", "A useful scorecard should be scan-friendly enough for a marketing executive and specific enough for operators."],
@@ -373,8 +373,8 @@ const HowIWorkGPT = () => {
   ];
 
   return (
-    <SiteShellHiFiGPT active="process">
-      <BlogHeroHiFiGPT
+    <SiteShellHiFi active="process">
+      <BlogHeroHiFi
         eyebrow="How I Work"
         title={<>Decision first. <span className="paper-cut">Dashboard second.</span></>}
         lead="My best work starts by clarifying the business decision, then building the scorecard, source logic or automation that makes the decision easier to make again."
@@ -382,7 +382,7 @@ const HowIWorkGPT = () => {
         note="The point is a cleaner operating rhythm: fewer mystery metrics, faster diagnosis and a clearer handoff between marketing, sales, service and finance."
       />
       <div className="blog-rail-layout">
-        <SideRailHiFiGPT links={[
+        <SideRailHiFi links={[
           ["#principles", "Principles"],
           ["#method", "Operating loop"],
           ["#scorecard", "Scorecard"],
@@ -394,7 +394,7 @@ const HowIWorkGPT = () => {
         ]} />
         <div>
           <section id="principles" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="Core approach" title="The principles I use before I build the report." copy="These are the habits behind the portfolio: practical decision support, clear definitions, honest caveats and a shorter path from reporting to action." />
+            <SectionIntroHiFi eyebrow="Core approach" title="The principles I use before I build the report." copy="These are the habits behind the portfolio: practical decision support, clear definitions, honest caveats and a shorter path from reporting to action." />
             <div className="pillar-ledger site-principle-ledger">
               {principles.map(([num, title, copy]) => (
                 <div className="pillar-line" key={title}>
@@ -407,8 +407,8 @@ const HowIWorkGPT = () => {
           </section>
 
           <section id="method" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="Operating loop" title="The six-step loop I keep coming back to." copy="This is the compact version of the problem-solving framework behind the portfolio. It keeps the work grounded before it gets technical." />
-            <MethodStripHiFiGPT steps={[["01", "Frame"], ["02", "Hypothesize"], ["03", "Source"], ["04", "Diagnose"], ["05", "Translate"], ["06", "Close loop"]]} />
+            <SectionIntroHiFi eyebrow="Operating loop" title="The six-step loop I keep coming back to." copy="This is the compact version of the problem-solving framework behind the portfolio. It keeps the work grounded before it gets technical." />
+            <MethodStripHiFi steps={[["01", "Frame"], ["02", "Hypothesize"], ["03", "Source"], ["04", "Diagnose"], ["05", "Translate"], ["06", "Close loop"]]} />
             <div className="blog-note-band site-note-split">
               <h3>What usually breaks.</h3>
               <p>The reporting exists, but the handoff is unclear. Spend is visible, but booked work is not connected cleanly. Leads are counted, but quality is vague. A dashboard shows what happened, but not what to do next.</p>
@@ -416,7 +416,7 @@ const HowIWorkGPT = () => {
           </section>
 
           <section id="scorecard" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="Growth baseline scorecard" title="The metrics I want visible before a growth conversation." copy="A quick scan should show demand volume, cost per funnel goal, booking output, media efficiency and downstream quality in one view." />
+            <SectionIntroHiFi eyebrow="Growth baseline scorecard" title="The metrics I want visible before a growth conversation." copy="A quick scan should show demand volume, cost per funnel goal, booking output, media efficiency and downstream quality in one view." />
             <div className="site-score-row site-score-row-wide">
               {scorecardMetrics.map(([label, value, copy]) => (
                 <div className="site-score-card" key={label}>
@@ -443,7 +443,7 @@ const HowIWorkGPT = () => {
           </section>
 
           <section id="funnel-stage-dashboards" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="Funnel-stage dashboards" title="Each stage gets its own operating report." copy="The executive view should roll up cleanly, but the diagnosis has to separate stage problems. A weak month can come from expensive media, missed calls, slow booking, poor completion, or weak follow-up." />
+            <SectionIntroHiFi eyebrow="Funnel-stage dashboards" title="Each stage gets its own operating report." copy="The executive view should roll up cleanly, but the diagnosis has to separate stage problems. A weak month can come from expensive media, missed calls, slow booking, poor completion, or weak follow-up." />
             <div className="funnel-report-grid">
               {funnelReports.map(([stage, question, metrics], idx) => (
                 <article className="funnel-report-card" key={stage}>
@@ -459,7 +459,7 @@ const HowIWorkGPT = () => {
           </section>
 
           <section id="channel-dashboards" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="Marketing-channel dashboards" title="Channel reports should explain quality, not just spend." copy="I like channel views that compare acquisition cost with booking quality and downstream value. That keeps the conversation focused on budget movement, not vanity volume." />
+            <SectionIntroHiFi eyebrow="Marketing-channel dashboards" title="Channel reports should explain quality, not just spend." copy="I like channel views that compare acquisition cost with booking quality and downstream value. That keeps the conversation focused on budget movement, not vanity volume." />
             <div className="channel-ledger">
               {channelReports.map(([channel, role, copy]) => (
                 <div className="channel-line" key={channel}>
@@ -474,7 +474,7 @@ const HowIWorkGPT = () => {
           </section>
 
           <section id="lifecycle-stack" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="Lifecycle + stack" title="The stack should follow the customer journey." copy="The systems do not need to look complicated. They need to keep the customer journey, operational handoff and scorecard aligned from first touch through repeat and referral." />
+            <SectionIntroHiFi eyebrow="Lifecycle + stack" title="The stack should follow the customer journey." copy="The systems do not need to look complicated. They need to keep the customer journey, operational handoff and scorecard aligned from first touch through repeat and referral." />
             <div className="site-lifecycle-line">
               {stackStages.map(([stage, tools, metrics], idx) => (
                 <div className={`site-lifecycle-stage ${idx === 1 || idx === 3 ? "is-active" : ""}`} key={stage}>
@@ -497,7 +497,7 @@ const HowIWorkGPT = () => {
           </section>
 
           <section id="attribution" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="Attribution" title="Attribution should help budget decisions, not just sound sophisticated." copy="The useful version compares multiple touches with call-center and booked-job reality so ROAS, CAC and channel value are trusted enough to act on." />
+            <SectionIntroHiFi eyebrow="Attribution" title="Attribution should help budget decisions, not just sound sophisticated." copy="The useful version compares multiple touches with call-center and booked-job reality so ROAS, CAC and channel value are trusted enough to act on." />
             <div className="attribution-board">
               <div className="attribution-copy">
                 <h3>A practical attribution view weights the journey.</h3>
@@ -521,7 +521,7 @@ const HowIWorkGPT = () => {
           </section>
 
           <section id="deliverables" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="What I know how to build" title="The repeated deliverables behind the portfolio." copy="The goal is not more dashboards. It is a short list of tools the team can actually use to make better weekly decisions." />
+            <SectionIntroHiFi eyebrow="What I know how to build" title="The repeated deliverables behind the portfolio." copy="The goal is not more dashboards. It is a short list of tools the team can actually use to make better weekly decisions." />
             <div className="post-timeline">
               {deliverables.map(([title, topic, copy], idx) => (
                 <div className="post-line" key={title}>
@@ -537,13 +537,13 @@ const HowIWorkGPT = () => {
           </section>
         </div>
       </div>
-    </SiteShellHiFiGPT>
+    </SiteShellHiFi>
   );
 };
 
-const DashboardsGPT = () => (
-  <SiteShellHiFiGPT active="dash">
-    <BlogHeroHiFiGPT
+const DashboardsPageSite = () => (
+  <SiteShellHiFi active="dash">
+    <BlogHeroHiFi
       eyebrow="Dashboards"
       title={<>Operating surfaces, <span className="paper-cut">not metric museums.</span></>}
       lead="A useful dashboard makes the next action easier to see: scale, pause, fix, test, route, follow up or investigate."
@@ -551,14 +551,14 @@ const DashboardsGPT = () => (
       note="This page keeps the card system but positions each dashboard around the operating question a leader would actually ask."
     />
     <div className="blog-rail-layout">
-      <SideRailHiFiGPT links={[["#ledger", "Summary"], ["#grid", "Dashboard library"], ["#questions", "Operating questions"]]} />
+      <SideRailHiFi links={[["#ledger", "Summary"], ["#grid", "Dashboard library"], ["#questions", "Operating questions"]]} />
       <div>
         <section id="ledger" className="blog-section">
-          <LedgerHiFiGPT items={[["6", "dashboard surfaces"], ["18+", "KPIs tracked"], ["4", "stories tied to dashboards"], ["1", "analytics backbone"]]} />
+          <LedgerHiFi items={[["6", "dashboard surfaces"], ["18+", "KPIs tracked"], ["4", "stories tied to dashboards"], ["1", "analytics backbone"]]} />
         </section>
         <section id="grid" className="blog-section site-dash-tight">
-          <SectionIntroHiFiGPT eyebrow="Dashboard library" title="Each dashboard answers a different operating question." copy="The design stays visual, but the point is decision support." />
-          <DashGridHiFiGPT />
+          <SectionIntroHiFi eyebrow="Dashboard library" title="Each dashboard answers a different operating question." copy="The design stays visual, but the point is decision support." />
+          <DashGridHiFi />
         </section>
         <section id="questions" className="blog-section">
           <div className="post-timeline">
@@ -569,12 +569,12 @@ const DashboardsGPT = () => (
         </section>
       </div>
     </div>
-  </SiteShellHiFiGPT>
+  </SiteShellHiFi>
 );
 
-const ExamplesGPT = () => (
-  <SiteShellHiFiGPT active="ex">
-    <BlogHeroHiFiGPT
+const ExamplesPageSite = () => (
+  <SiteShellHiFi active="ex">
+    <BlogHeroHiFi
       eyebrow="Examples"
       title={<>STAR stories with <span className="paper-cut">operating proof.</span></>}
       lead="These are not long case-study archives. They are concise proof points: what was broken, what I owned, what changed, and which lifecycle lever moved."
@@ -582,20 +582,20 @@ const ExamplesGPT = () => (
       note="The reader should be able to scan one story and understand both the business result and the kind of operator behind it."
     />
     <div className="blog-rail-layout">
-      <SideRailHiFiGPT links={[["#comparison", "Comparison"], ["#funnel-reports", "Funnel reports"], ["#channel-reports", "Channel reports"], ["#stories", "Stories"]]} />
+      <SideRailHiFi links={[["#comparison", "Comparison"], ["#funnel-reports", "Funnel reports"], ["#channel-reports", "Channel reports"], ["#stories", "Stories"]]} />
       <div>
         <section id="comparison" className="blog-section">
-          <SectionIntroHiFiGPT eyebrow="Comparison layer" title="The four stories cover different operating muscles." copy="Together they show attribution, lifecycle reporting, CAC efficiency, mid-funnel strategy and operational BI." />
+          <SectionIntroHiFi eyebrow="Comparison layer" title="The four stories cover different operating muscles." copy="Together they show attribution, lifecycle reporting, CAC efficiency, mid-funnel strategy and operational BI." />
           <div className="post-timeline">
-            {EXAMPLES_GPT_HIFI.map(([idx, brand, theme, title, lever, href]) => (
+            {EXAMPLES_HIFI.map(([idx, brand, theme, title, lever, href]) => (
               <a className="post-line" href={href} key={brand}><div className="post-line-date">{idx}</div><div><h3>{brand}: {lever}</h3><p>{title}</p></div><div className="post-line-topic">{theme}</div></a>
             ))}
           </div>
         </section>
         <section id="funnel-reports" className="blog-section">
-          <SectionIntroHiFiGPT eyebrow="Funnel report layer" title="The same proof can be read by funnel stage." copy="This adds the operating lens behind the STAR stories: where the work lived, which handoff mattered, and which dashboard would make the next decision easier." />
+          <SectionIntroHiFi eyebrow="Funnel report layer" title="The same proof can be read by funnel stage." copy="This adds the operating lens behind the STAR stories: where the work lived, which handoff mattered, and which dashboard would make the next decision easier." />
           <div className="funnel-report-grid">
-            {EXAMPLE_FUNNEL_REPORTS_GPT.map(([stage, question, metrics], idx) => (
+            {EXAMPLE_FUNNEL_REPORTS.map(([stage, question, metrics], idx) => (
               <article className="funnel-report-card" key={stage}>
                 <div className="funnel-report-index">{String(idx + 1).padStart(2, "0")}</div>
                 <h3>{stage}</h3>
@@ -608,9 +608,9 @@ const ExamplesGPT = () => (
           </div>
         </section>
         <section id="channel-reports" className="blog-section">
-          <SectionIntroHiFiGPT eyebrow="Channel and handoff reports" title="The channel view should include quality and follow-through." copy="A channel dashboard should not stop at spend and leads. It should show whether that source produced booked work, revenue, repeat value, or a handoff problem worth fixing." />
+          <SectionIntroHiFi eyebrow="Channel and handoff reports" title="The channel view should include quality and follow-through." copy="A channel dashboard should not stop at spend and leads. It should show whether that source produced booked work, revenue, repeat value, or a handoff problem worth fixing." />
           <div className="channel-ledger">
-            {EXAMPLE_CHANNEL_REPORTS_GPT.map(([channel, role, copy]) => (
+            {EXAMPLE_CHANNEL_REPORTS.map(([channel, role, copy]) => (
               <div className="channel-line" key={channel}>
                 <div>
                   <span>{role}</span>
@@ -622,19 +622,19 @@ const ExamplesGPT = () => (
           </div>
         </section>
         <section id="stories" className="blog-section site-example-tight">
-          <SectionIntroHiFiGPT eyebrow="Four stories" title="Concise, branded, and built for scanning." copy="Each page keeps a lifecycle visual and STAR summary." />
-          <ExamplesListHiFiGPT />
+          <SectionIntroHiFi eyebrow="Four stories" title="Concise, branded, and built for scanning." copy="Each page keeps a lifecycle visual and STAR summary." />
+          <ExamplesListHiFi />
         </section>
       </div>
     </div>
-  </SiteShellHiFiGPT>
+  </SiteShellHiFi>
 );
 
-const ResumeGPT = () => {
+const ResumePageSite = () => {
   const { ResumeSection } = window;
   return (
-    <SiteShellHiFiGPT active="resume">
-      <BlogHeroHiFiGPT
+    <SiteShellHiFi active="resume">
+      <BlogHeroHiFi
         eyebrow="Resume"
         title={<>The through-line is <span className="paper-cut">operating clarity.</span></>}
         lead="Marketing operations, BI, attribution, funnel analytics and executive reporting across SaaS, local services, public-sector operations and independent analytical work."
@@ -643,13 +643,13 @@ const ResumeGPT = () => {
         actions={<><a className="btn btn-filled" href="assets/steve-hill-resume.pdf">Download PDF</a><a className="btn" href="mailto:me@stevehill.work">Email me</a></>}
       />
       <div className="blog-rail-layout">
-        <SideRailHiFiGPT links={[["#experience", "Experience"], ["#capabilities", "Capabilities"]]} />
+        <SideRailHiFi links={[["#experience", "Experience"], ["#capabilities", "Capabilities"]]} />
         <div>
           <section id="experience" className="blog-section">
             <ResumeSection />
           </section>
           <section id="capabilities" className="blog-section">
-            <SectionIntroHiFiGPT eyebrow="What I build" title="Four repeatable capabilities behind the job history." copy="This keeps the resume page useful for a hiring manager who wants to know what the experience adds up to." />
+            <SectionIntroHiFi eyebrow="What I build" title="Four repeatable capabilities behind the job history." copy="This keeps the resume page useful for a hiring manager who wants to know what the experience adds up to." />
             <div className="pillar-ledger">
               {[["01 / MarTech", "Integration and data flows", "CRM, source fields, campaign data and process automation."], ["02 / Attribution", "CAC and ROAS clarity", "Measurement that connects spend to booked and retained outcomes."], ["03 / Scorecards", "Executive operating rhythm", "Weekly views that show what moved and what to do next."], ["04 / Lifecycle", "Handoff diagnostics", "Marketing, sales, service, support, follow-up and referral in one journey."]].map(([num, title, copy]) => (
                 <div className="pillar-line" key={title}><div className="pillar-number">{num}</div><h3>{title}</h3><p>{copy}</p></div>
@@ -658,15 +658,15 @@ const ResumeGPT = () => {
           </section>
         </div>
       </div>
-    </SiteShellHiFiGPT>
+    </SiteShellHiFi>
   );
 };
 
-const CaseStudyGPT = ({ cfg }) => {
+const CaseStudyPageSite = ({ cfg }) => {
   const Preview = cfg.preview;
-  const reportExamples = CASE_REPORT_EXAMPLES_GPT[cfg.slug] || [];
+  const reportExamples = CASE_REPORT_EXAMPLES[cfg.slug] || [];
   return (
-    <SiteShellHiFiGPT active="ex">
+    <SiteShellHiFi active="ex">
       <div className={`site-case ${cfg.brandClass}`}>
         <section className="article-masthead">
           <div className="article-masthead-inner">
@@ -689,10 +689,10 @@ const CaseStudyGPT = ({ cfg }) => {
           </div>
         </section>
         <div className="article-content-layout">
-          <SideRailHiFiGPT label="Story sections" links={[["#metrics", "Metrics"], ["#lifecycle", "Lifecycle"], ["#reports", "Reports"], ["#star", "STAR"], ["#takeaway", "Takeaway"]]} />
+          <SideRailHiFi label="Story sections" links={[["#metrics", "Metrics"], ["#lifecycle", "Lifecycle"], ["#reports", "Reports"], ["#star", "STAR"], ["#takeaway", "Takeaway"]]} />
           <article className="article-prose">
             <section id="metrics">
-              <LedgerHiFiGPT items={cfg.stats} />
+              <LedgerHiFi items={cfg.stats} />
             </section>
             <section id="lifecycle">
               <h2>Where the work changed the journey.</h2>
@@ -745,41 +745,41 @@ const CaseStudyGPT = ({ cfg }) => {
           </aside>
         </div>
       </div>
-    </SiteShellHiFiGPT>
+    </SiteShellHiFi>
   );
 };
 
-const ReviewGPT = () => (
-  <SiteShellHiFiGPT active="home">
-    <BlogHeroHiFiGPT
+const ReviewPageSite = () => (
+  <SiteShellHiFi active="home">
+    <BlogHeroHiFi
       eyebrow="Review hub"
       title={<>HiFiBlog <span className="paper-cut">site set.</span></>}
-      lead="This is the review entry point for the full GPT-suffixed site recreated in the HiFiBlog visual direction."
+      lead="This is the review entry point for the full production site recreated in the HiFiBlog visual direction."
       noteTitle="What changed."
       note="The rest of the site now uses the same editorial heroes, side rails, ledgers, timelines and article-style story structure as the blog mock."
     />
     <div className="blog-rail-layout">
-      <SideRailHiFiGPT links={[["#pages", "Pages"]]} />
+      <SideRailHiFi links={[["#pages", "Pages"]]} />
       <section id="pages" className="blog-section">
-        <SectionIntroHiFiGPT eyebrow="Pages" title="Review the HiFiBlog-style variants." copy="Original sandbox pages are still available. These are the GPT-suffixed review pages." />
+        <SectionIntroHiFi eyebrow="Pages" title="Review the HiFiBlog-style variants." copy="Original sandbox pages are still available. These are the production review pages." />
         <div className="post-timeline">
           {[["Home", "index.html", "Overall story and proof hierarchy"], ["How I Work", "HowIWork.html", "Operating principles and scorecard examples"], ["Dashboards", "Dashboards.html", "Dashboard framing as decision surfaces"], ["Blog", "Blog.html", "Blog index mock"], ["Examples", "Examples.html", "Story hub and comparison layer"], ["Resume", "Resume.html", "Resume as capability narrative"], ["Foxit", "Case-Foxit.html", "Lifecycle reporting story"], ["Website Squirrel", "Case-Squirrel.html", "CAC and lead-quality story"], ["Netgain", "Case-Netgain.html", "Attribution and mid-funnel story"], ["UTA", "Case-UTA.html", "Operations BI story"]].map(([name, href, copy]) => (
-            <a className="post-line" href={href} key={name}><div className="post-line-date">{name}</div><div><h3>{copy}</h3><p>Open the GPT version and compare against the original sandbox page.</p></div><div className="post-line-topic">Open</div></a>
+            <a className="post-line" href={href} key={name}><div className="post-line-date">{name}</div><div><h3>{copy}</h3><p>Open the production version and compare against the original sandbox page.</p></div><div className="post-line-topic">Open</div></a>
           ))}
         </div>
       </section>
     </div>
-  </SiteShellHiFiGPT>
+  </SiteShellHiFi>
 );
 
 Object.assign(window, {
-  NavHiFiGPT,
-  SiteShellHiFiGPT,
-  HomeGPT,
-  HowIWorkGPT,
-  DashboardsGPT,
-  ExamplesGPT,
-  ResumeGPT,
-  CaseStudyGPT,
-  ReviewGPT,
+  NavHiFi,
+  SiteShellHiFi,
+  HomePageSite,
+  HowIWorkPageSite,
+  DashboardsPageSite,
+  ExamplesPageSite,
+  ResumePageSite,
+  CaseStudyPageSite,
+  ReviewPageSite,
 });

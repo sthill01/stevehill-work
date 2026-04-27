@@ -1,16 +1,3 @@
-# Review URL redirects.
-/Home_GPT.html / 302
-/HowIWork_GPT.html /HowIWork.html 302
-/Dashboards_GPT.html /Dashboards.html 302
-/Examples_GPT.html /Examples.html 302
-/Resume_GPT.html /Resume.html 302
-/Blog_GPT.html /Blog.html 302
-/Blog_Article_GPT.html /Blog_Article.html 302
-/Case-Foxit_GPT.html /Case-Foxit.html 302
-/Case-Netgain_GPT.html /Case-Netgain.html 302
-/Case-Squirrel_GPT.html /Case-Squirrel.html 302
-/Case-UTA_GPT.html /Case-UTA.html 302
-
 # Legacy live-site redirects.
 /MOps /HowIWork.html 302
 /MOps/ /HowIWork.html 302
