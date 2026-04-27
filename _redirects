@@ -1,6 +1,4 @@
 # Legacy live-site redirects.
-/IHS/ /IHS 302
-/IHS/index.html /IHS 302
 /IHS/plan.html /IHS-120-Day-Plan 302
 /MOps /HowIWork.html 302
 /MOps/ /HowIWork.html 302
