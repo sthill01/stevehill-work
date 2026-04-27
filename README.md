@@ -15,8 +15,8 @@ This repo is intended to be connected directly to Cloudflare Pages. It contains 
 - `Case-Netgain.html`
 - `Case-Squirrel.html`
 - `Case-UTA.html`
-- `IHS.html`
-- `IHS-120-Day-Plan.html`
+- `IHS.html` (clean route: `/IHS`)
+- `IHS-120-Day-Plan.html` (clean route: `/IHS-120-Day-Plan`)
 
 The previous sandbox/review repo remains available separately as `stevehill-work-redesign`.
 

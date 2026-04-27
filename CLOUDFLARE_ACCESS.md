@@ -2,8 +2,8 @@
 
 The production site includes two IHS routes:
 
-- Public or lightly shared overview: `/IHS.html`
-- Protected plan: `/IHS-120-Day-Plan.html`
+- Public or lightly shared overview: `/IHS`
+- Protected plan: `/IHS-120-Day-Plan`
 
 Use Cloudflare Access to protect only the detailed plan route.
 
@@ -17,7 +17,7 @@ Use Cloudflare Access to protect only the detailed plan route.
 6. Application name: `Steve Hill IHS 120-Day Plan`.
 7. Public hostname:
    - Domain: `stevehill.work`
-   - Path: `/IHS-120-Day-Plan.html`
+   - Path: `/IHS-120-Day-Plan`
 8. Add an allow policy.
 9. Use one of these rules:
    - Specific allowed emails for the interview panel.
@@ -29,7 +29,7 @@ Use Cloudflare Access to protect only the detailed plan route.
 
 Share the protected URL only after the Access policy is active:
 
-`https://stevehill.work/IHS-120-Day-Plan.html`
+`https://stevehill.work/IHS-120-Day-Plan`
 
 Keep the broader portfolio public:
 

@@ -683,6 +683,74 @@ const IHS_STACK = [
   ["Target standardized growth stack", "The target is not one-size-fits-all marketing. It is shared measurement, protected brand identity, and clean source-to-booked-job visibility.", ["Shared UTM and lead-source taxonomy", "Call tracking connected to campaign/source", "CRM and operating-system handoff fields", "Power BI scorecards with confidence labels", "Weekly scale/fix/test cadence", "Feedback loop from service completion, NPS, reviews, repeat, and referral"]]
 ];
 
+const IHS_PROJECT_STATUS = [
+  ["Overall status", "On Target", "Green"],
+  ["Day counter", "Day 0 of 120", "Pre-kickoff / Round 3 interview phase"],
+  ["Day 120 promise", "10 inventoried / 1 pilot proven", "2 fast-follow started / 7 queued"]
+];
+
+const IHS_PROJECT_PHASES = [
+  ["Phase 0", "Pre-kickoff", "In progress"],
+  ["Phase 1", "Inventory", "Days 1-30"],
+  ["Phase 2", "Stabilize on pilot", "Days 31-60"],
+  ["Phase 3", "Operationalize", "Days 61-90"],
+  ["Phase 4", "Scale", "Days 91-120"]
+];
+
+const IHS_PROJECT_BRANDS = [
+  ["Superior Water & Air", "Fast-follow candidate"],
+  ["SameDay", "Queued"],
+  ["Beehive Plumbing", "Fast-follow candidate"],
+  ["Diamond", "Queued"],
+  ["Master Rooter", "Queued"],
+  ["Comfort Solutions", "Queued"],
+  ["Walker / St. George", "Queued"],
+  ["Craig's Services", "Queued"],
+  ["Lee's", "Queued"],
+  ["My Buddy the Plumber", "Fast-follow candidate"]
+];
+
+const IHS_PROJECT_GATES = [
+  ["Day 30", "Inventory", "Inventory all 10 brands, audit the stack, and score pilot candidates."],
+  ["Day 60", "Pilot live", "Pilot governance, dashboard, data contract, and playbook v0 are usable."],
+  ["Day 90", "Operating cadence", "Friday Growth Review, closed-loop v0, leakage layer, and Brand 2 start."],
+  ["Day 120", "Budget moves live", "Budget Move Board, Brand 3 start, playbook v2, and rollout roadmap."]
+];
+
+const IHS_WORKSTREAM_LOAD = [
+  ["Executive / CMO", ["Med", "Low", "Med", "High"]],
+  ["Performance Marketing", ["High", "High", "Med", "Med"]],
+  ["Brand / GMs", ["High", "Med", "Med", "Med"]],
+  ["IT / Data / ServiceTitan", ["Peak", "High", "Med", "Low"]],
+  ["Call Center / CS", ["Med", "Med", "High", "Low"]],
+  ["Finance / Ops", ["Low", "Low", "Med", "High"]],
+  ["Steve / MOps", ["Peak", "Peak", "Peak", "Peak"]]
+];
+
+const IHS_RISK_LOG = [
+  ["R1", "Data access delay after kickoff", "High", "If access takes more than 3 business days, escalate the blocker list and use exports for the interim baseline."],
+  ["R2", "ServiceTitan field quality gaps", "High", "If Campaign or Job Tag fields are incomplete or repurposed, label confidence honestly and standardize pilot fields first."],
+  ["R3", "Pilot GM perceives audit, not investment", "Medium", "Use the pilot memo, brand-protected map, and adoption plan so the work feels like help, not compliance overhead."],
+  ["R4", "Scope creeps into operations redesign", "Medium", "Run the scope-change protocol before changing timeline, ownership, or deliverable expectations."]
+];
+
+const IHS_DECISION_LOG = [
+  ["D-001", "Use 10-brand portfolio model", "Made", "Keeps the plan aligned to the full brand list instead of legacy 8-brand language."],
+  ["D-002", "Day 120 promise: 1 pilot proven, 2 fast-follow, 7 queued", "Made", "Ambitious but credible; built around pilot-then-replicate instead of pretending all brands finish at once."],
+  ["D-003", "Confirm actual project start date", "Needed", "Required before final Gantt dates or stage-gate commitments are locked."],
+  ["D-004", "Name department owners", "Needed", "IT/Data, ServiceTitan, CS, Performance Marketing, Web/GTM, Finance, and pilot GM owners need to be named at kickoff."],
+  ["D-005", "Approve pilot selection criteria and candidates", "Needed", "Use the inventory and pilot scoring workbook before selecting the Day 31 pilot."]
+];
+
+const IHS_SCOPE_PROTOCOL = [
+  ["Capture", "Log who asked, when, the business reason, and the source."],
+  ["Classify", "Separate clarification, new requirement, risk, issue, dependency, and timeline shift."],
+  ["Assess", "Check impact on time, resources, data confidence, deliverables, and expectations."],
+  ["Decide", "Accept, defer, trade off, escalate, reject, or backlog the request."],
+  ["Update", "Revise the scorecard, timeline, risk log, RACI, and stage notes."],
+  ["Communicate", "Name what changed, why, who owns it, and what moves as a result."]
+];
+
 const IHSLandingPageSite = () => (
   <SiteShellHiFi active="home">
     <BlogHeroHiFi
@@ -719,7 +787,7 @@ const IHSLandingPageSite = () => (
         <section id="access" className="blog-section">
           <div className="blog-note-band">
             <h3>Protect the detailed plan, not the whole portfolio.</h3>
-            <p>The clean setup is to leave this overview public or semi-private, then use Cloudflare Access on only <strong>/IHS-120-Day-Plan.html</strong>. That keeps the main portfolio easy to browse while the interview-specific plan requires authentication.</p>
+            <p>The clean setup is to leave this overview public or semi-private, then use Cloudflare Access on only <strong>/IHS-120-Day-Plan</strong>. That keeps the main portfolio easy to browse while the interview-specific plan requires authentication.</p>
           </div>
         </section>
       </div>
@@ -738,13 +806,105 @@ const IHSPlanPageSite = () => (
       actions={<><a className="btn btn-filled" href="#plan-phases">Jump to plan</a><a className="btn" href="IHS.html">Packet overview</a></>}
     />
     <div className="blog-rail-layout">
-      <SideRailHiFi links={[["#bottom-line", "Bottom line"], ["#needs", "Needs matrix"], ["#lifecycle", "Lifecycle"], ["#stack", "Stack"], ["#scorecard", "Scorecard"], ["#plan-phases", "120 days"], ["#access", "Access setup"]]} />
+      <SideRailHiFi links={[["#bottom-line", "Bottom line"], ["#project-scorecard", "Project scorecard"], ["#needs", "Needs matrix"], ["#lifecycle", "Lifecycle"], ["#stack", "Stack"], ["#growth-scorecard", "Growth scorecard"], ["#plan-phases", "120 days"], ["#access", "Access setup"]]} />
       <div>
         <section id="bottom-line" className="blog-section">
           <SectionIntroHiFi eyebrow="Bottom line" title="The first win is a reliable operating rhythm, not a prettier dashboard." copy="The first 120 days should prove version one of the measurement operating system: shared funnel language, cleaner source capture, a pilot scorecard, and a repeatable scale/fix/test meeting cadence." />
           <div className="site-score-row">
             {[["North Star", "Services booked / day", "The main operating metric"], ["Demand", "Calls / day", "Upstream demand pressure"], ["Efficiency", "ROAS", "Media return with source confidence"], ["Cost", "CAC", "Acquisition cost after quality filters"], ["Quality", "Booked-job rate", "Lead-to-booking handoff strength"], ["Trust", "Source confidence", "Measured vs. inferred attribution"]].map(([label, value, copy]) => (
               <div className="site-score-card" key={label}><span>{label}</span><strong>{value}</strong><p>{copy}</p></div>
+            ))}
+          </div>
+        </section>
+        <section id="project-scorecard" className="blog-section">
+          <SectionIntroHiFi eyebrow="Project scorecard" title="One-glance control view for the 10-brand build." copy="This brings the branded scorecard packet into the plan: current status, phase progression, brand cascade, gates, workstream load, active risks, decisions, and scope governance." />
+          <div className="project-status-band">
+            {IHS_PROJECT_STATUS.map(([label, value, copy]) => (
+              <div className="project-status-cell" key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+                <p>{copy}</p>
+              </div>
+            ))}
+          </div>
+          <div className="project-phase-grid">
+            {IHS_PROJECT_PHASES.map(([phase, name, days], idx) => (
+              <div className={`project-phase-cell ${idx === 0 ? "is-current" : ""}`} key={phase}>
+                <span>{phase}</span>
+                <strong>{name}</strong>
+                <p>{days}</p>
+              </div>
+            ))}
+          </div>
+          <div className="project-cascade">
+            <div className="project-pilot-card">
+              <span>Selected at Day 30</span>
+              <h3>Pilot brand: To Be Selected</h3>
+              <p>The pilot should be chosen through the Commonality Matrix: trade representativeness, mid-size paid spend, stack maturity, GM receptivity, and how closely the motion mirrors the portfolio.</p>
+              <div className="metric-chip-row"><span>Inventory pending</span><span>Tracking confidence TBD</span><span>CMO + pilot GM + IT sign-off</span></div>
+            </div>
+            <div className="project-brand-grid">
+              {IHS_PROJECT_BRANDS.map(([brand, status], idx) => (
+                <div className="project-brand-card" key={brand}>
+                  <span>Brand {String(idx + 1).padStart(2, "0")}</span>
+                  <strong>{brand}</strong>
+                  <em>{status}</em>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="project-gate-list">
+            {IHS_PROJECT_GATES.map(([gate, title, copy]) => (
+              <div className="project-gate-row" key={gate}>
+                <span>{gate}</span>
+                <strong>{title}</strong>
+                <p>{copy}</p>
+              </div>
+            ))}
+          </div>
+          <div className="project-heatmap">
+            <div className="project-heat-head">Workstream</div>
+            {["Days 1-30", "Days 31-60", "Days 61-90", "Days 91-120"].map((label) => <div className="project-heat-head" key={label}>{label}</div>)}
+            {IHS_WORKSTREAM_LOAD.map(([workstream, loads]) => (
+              <React.Fragment key={workstream}>
+                <div className="project-heat-label">{workstream}</div>
+                {loads.map((load, idx) => <div className={`project-heat-cell heat-${load.toLowerCase()}`} key={`${workstream}-${idx}`}>{load}</div>)}
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="project-watch-grid">
+            <div className="project-watch-card">
+              <h3>Risk / issue watch</h3>
+              {IHS_RISK_LOG.map(([id, title, level, copy]) => (
+                <div className="project-watch-row" key={id}>
+                  <span>{id}</span>
+                  <div><strong>{title}</strong><p>{copy}</p></div>
+                  <em>{level}</em>
+                </div>
+              ))}
+            </div>
+            <div className="project-watch-card">
+              <h3>Decision log</h3>
+              {IHS_DECISION_LOG.map(([id, title, status, copy]) => (
+                <div className="project-watch-row" key={id}>
+                  <span>{id}</span>
+                  <div><strong>{title}</strong><p>{copy}</p></div>
+                  <em>{status}</em>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="blog-note-band project-scope-intro">
+            <h3>Scope change protocol.</h3>
+            <p>Every in-flight change gets captured, classified, assessed, decided, updated, and communicated before it changes the project timeline or expectations.</p>
+          </div>
+          <div className="project-scope-flow">
+            {IHS_SCOPE_PROTOCOL.map(([title, copy], idx) => (
+              <div className="project-scope-step" key={title}>
+                <span>Step {String(idx + 1).padStart(2, "0")}</span>
+                <strong>{title}</strong>
+                <p>{copy}</p>
+              </div>
             ))}
           </div>
         </section>
@@ -786,7 +946,7 @@ const IHSPlanPageSite = () => (
             ))}
           </div>
         </section>
-        <section id="scorecard" className="blog-section">
+        <section id="growth-scorecard" className="blog-section">
           <SectionIntroHiFi eyebrow="Example deliverable" title="Growth baseline scorecard." copy="A practical scorecard should make the weekly question simple: what should we scale, what should we fix, what should we test, and what should we watch?" />
           <div className="site-score-row site-score-row-wide">
             {[["Spend", "$42K", "Media investment"], ["Calls / day", "118", "Demand pressure"], ["Cost / lead", "$86", "Top-funnel cost"], ["Services booked / day", "46", "North Star"], ["Cost / booked customer", "$221", "Cost to real goal"], ["Booked-job rate", "39%", "Handoff quality"], ["Revenue", "$186K", "Booked/completed value"], ["ROAS", "4.4x", "Media efficiency"], ["Repeat / referral", "18%", "Downstream quality"], ["NPS", "71", "Promoter signal"], ["Source confidence", "84%", "Tracking trust"], ["Next action", "Fix", "Call answer gap"]].map(([label, value, copy]) => (
@@ -813,7 +973,7 @@ const IHSPlanPageSite = () => (
         <section id="access" className="blog-section">
           <div className="blog-note-band">
             <h3>Access note.</h3>
-            <p>This page is designed to be protected in Cloudflare Access at the route <strong>/IHS-120-Day-Plan.html</strong>. Do not share the direct live link until the Access policy is active.</p>
+            <p>This page is designed to be protected in Cloudflare Access at the clean route <strong>/IHS-120-Day-Plan</strong>. Do not share the direct live link until the Access policy is active.</p>
           </div>
         </section>
       </div>
