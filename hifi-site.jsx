@@ -794,7 +794,7 @@ const IHSLandingPageSite = () => (
           </div>
         </section>
         <section id="focus" className="blog-section">
-          <SectionIntroHiFi eyebrow="Operating focus" title="The six needs the protected plan expands." copy="These are the workstreams the detailed plan organizes into a practical first-120-days sequence." />
+          <SectionIntroHiFi eyebrow="Operating focus" title="The six Marketing Operations Analytics needs this plan addresses." copy="These are the workstreams the detailed plan organizes into a practical first-120-days sequence." />
           <div className="funnel-report-grid">
             {IHS_NEEDS.map(([code, title, copy]) => (
               <article className="funnel-report-card" key={title}>
