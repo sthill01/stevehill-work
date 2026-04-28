@@ -1,9 +1,10 @@
 # Cloudflare Access Setup for the IHS Plan
 
-The production site includes three IHS routes:
+The production site includes these IHS routes:
 
 - Public or lightly shared overview: `/IHS`
-- Protected plan: `/IHS-120-Day-Plan` and `/IHS-120-Day-Plan.html`
+- Protected plan: `/IHS/120-day-plan`
+- Legacy plan redirects: `/IHS-120-Day-Plan` and `/IHS-120-Day-Plan.html`
 - Protected one-pager: `/IHS-120-Day-OnePager` and `/IHS-120-Day-OnePager.html`
 - Protected live presentation: `/IHS-Round3-Presentation` and `/IHS-Round3-Presentation.html`
 
@@ -19,7 +20,7 @@ Use Cloudflare Access to protect the detailed plan and live presentation routes.
 6. Application name: `Steve Hill IHS 120-Day Plan`.
 7. Public hostname:
    - Domain: `stevehill.work`
-   - Path: `/IHS-120-Day-Plan`
+   - Path: `/IHS/120-day-plan`
 8. Add an allow policy.
 9. Use one of these rules:
    - Specific allowed emails for the interview panel.
@@ -39,8 +40,10 @@ Repeat the same setup for the one-pager route:
 - Domain: `stevehill.work`
 - Path: `/IHS-120-Day-OnePager`
 
-Also protect the direct `.html` route if your Access setup does not support wildcard paths:
+Also protect the legacy and direct routes if your Access setup does not support wildcard paths:
 
+- `/IHS/120-day-plan`
+- `/IHS-120-Day-Plan`
 - `/IHS-120-Day-Plan.html`
 - `/IHS-120-Day-OnePager.html`
 - `/IHS-Round3-Presentation.html`
@@ -49,7 +52,8 @@ Also protect the direct `.html` route if your Access setup does not support wild
 
 Share the protected URL only after the Access policy is active:
 
-`https://stevehill.work/IHS-120-Day-Plan`
+`https://stevehill.work/IHS/120-day-plan`
+`https://stevehill.work/IHS-120-Day-Plan` redirects to the canonical plan route.
 `https://stevehill.work/IHS-120-Day-OnePager`
 `https://stevehill.work/IHS-Round3-Presentation`
 

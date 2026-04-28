@@ -1,10 +1,10 @@
 const SITE_NAV = [
-  ["home", "Home", "index.html"],
-  ["process", "How I Work", "HowIWork.html"],
-  ["dash", "Dashboards", "Dashboards.html"],
-  ["ex", "Examples", "Examples.html"],
-  ["resume", "Resume", "Resume.html"],
-  ["blog", "Blog", "Blog.html"],
+  ["home", "Home", "/"],
+  ["process", "How I Work", "/HowIWork.html"],
+  ["dash", "Dashboards", "/Dashboards.html"],
+  ["ex", "Examples", "/Examples.html"],
+  ["resume", "Resume", "/Resume.html"],
+  ["blog", "Blog", "/Blog.html"],
 ];
 
 const NavHiFi = ({ active = "home" }) => {
@@ -13,7 +13,7 @@ const NavHiFi = ({ active = "home" }) => {
     <nav className="nav nav-flat">
       <div className="nav-inner">
         <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          <a href="index.html" className="nav-logo">
+          <a href="/" className="nav-logo">
             <Logo compact />
           </a>
           <div
@@ -55,7 +55,7 @@ const SiteFooterHiFi = () => (
       <div style={{ display: "flex", gap: 18, flexWrap: "wrap", fontSize: 14 }}>
         <a href="mailto:me@stevehill.work">me@stevehill.work</a>
         <a href="tel:8018501253">801-850-1253</a>
-        <a href="assets/steve-hill-resume.pdf">Resume PDF</a>
+        <a href="/assets/steve-hill-resume.pdf">Resume PDF</a>
       </div>
     </div>
   </footer>
@@ -79,7 +79,7 @@ const BlogHeroHiFi = ({ eyebrow, title, lead, noteTitle, note, actions }) => (
         {actions && <div className="site-page-actions">{actions}</div>}
       </div>
       <aside className="blog-hero-aside">
-        <img className="blog-brand-stamp" src="assets/logo-square.svg" alt="Steve Hill logo" />
+        <img className="blog-brand-stamp" src="/assets/logo-square.svg" alt="Steve Hill logo" />
         <h2>{noteTitle}</h2>
         <p>{note}</p>
       </aside>
@@ -780,7 +780,7 @@ const IHSLandingPageSite = () => (
       lead="This page separates role-specific material from the public portfolio. The detailed 120-day plan should be protected with Cloudflare Access before the link is shared."
       noteTitle="Recommended access model."
       note="Keep the overview lightweight. Protect the detailed plan route at the Cloudflare edge so the content is not exposed as a public page."
-      actions={<><a className="btn btn-filled" href="IHS-120-Day-Plan.html">Open 120-day plan</a><a className="btn" href="HowIWork.html">How I work</a></>}
+      actions={<><a className="btn btn-filled" href="/IHS/120-day-plan">Open 120-day plan</a><a className="btn" href="/HowIWork.html">How I work</a></>}
     />
     <div className="blog-rail-layout">
       <SideRailHiFi links={[["#packet", "Packet"], ["#focus", "Operating focus"], ["#access", "Access"]]} />
@@ -808,7 +808,7 @@ const IHSLandingPageSite = () => (
         <section id="access" className="blog-section">
           <div className="blog-note-band">
             <h3>Protect the detailed plan, not the whole portfolio.</h3>
-            <p>The clean setup is to leave this overview public or semi-private, then use Cloudflare Access on only <strong>/IHS-120-Day-Plan</strong>. That keeps the main portfolio easy to browse while the interview-specific plan requires authentication.</p>
+            <p>The clean setup is to leave this overview public or semi-private, then use Cloudflare Access on only <strong>/IHS/120-day-plan</strong>. That keeps the main portfolio easy to browse while the interview-specific plan requires authentication.</p>
           </div>
         </section>
       </div>
@@ -824,7 +824,7 @@ const IHSPlanPageSite = () => (
       lead="The goal is to build a trusted measurement layer for growth testing: capture the funnel cleanly, test fast, see impact quickly, stop weak ideas, and scale wins across brands."
       noteTitle="Bottom line."
       note="Jacqueline should have a practical weekly view of services booked per day, calls per day, ROAS, CAC, booking quality, revenue, and source confidence."
-      actions={<><a className="btn btn-filled" href="#plan-phases">Jump to plan</a><a className="btn" href="IHS-120-Day-OnePager.html">Open one-pager</a><a className="btn" href="IHS-Round3-Presentation.html">Open Round 3 presentation</a><a className="btn" href="IHS.html">Packet overview</a></>}
+      actions={<><a className="btn btn-filled" href="#plan-phases">Jump to plan</a><a className="btn" href="/IHS-120-Day-OnePager">Open one-pager</a><a className="btn" href="/IHS-Round3-Presentation">Open Round 3 presentation</a><a className="btn" href="/IHS">Packet overview</a></>}
     />
     <div className="blog-rail-layout">
       <SideRailHiFi links={[["#bottom-line", "Bottom line"], ["#project-scorecard", "Project scorecard"], ["#needs", "Needs matrix"], ["#lifecycle", "Lifecycle"], ["#stack", "Stack"], ["#growth-scorecard", "Growth scorecard"], ["#plan-phases", "120 days"], ["#access", "Access setup"]]} />
@@ -862,7 +862,7 @@ const IHSPlanPageSite = () => (
               <span>Selected at Day 30</span>
               <h3>Pilot brand: To Be Selected</h3>
               <p>The pilot should be chosen through the Commonality Matrix: trade representativeness, mid-size paid spend, stack maturity, GM receptivity, and how closely the motion mirrors the portfolio.</p>
-              <div className="metric-chip-row"><span>Inventory pending</span><span>Tracking confidence TBD</span><span>CMO + pilot GM + IT sign-off</span></div>
+              <div className="metric-chip-row"><span>Inventory pending</span><span>Tracking confidence To Validate</span><span>CMO + pilot GM + IT sign-off</span></div>
             </div>
             <div className="project-brand-grid">
               {IHS_PROJECT_BRANDS.map(([brand, status], idx) => (

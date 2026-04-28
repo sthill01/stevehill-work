@@ -16,7 +16,8 @@ This repo is intended to be connected directly to Cloudflare Pages. It contains 
 - `Case-Squirrel.html`
 - `Case-UTA.html`
 - `IHS.html` (clean route: `/IHS`)
-- `IHS-120-Day-Plan.html` (clean route: `/IHS-120-Day-Plan`)
+- `IHS/120-day-plan/index.html` (canonical route: `/IHS/120-day-plan`)
+- `IHS-120-Day-Plan.html` (legacy route redirected to `/IHS/120-day-plan`)
 - `IHS-120-Day-OnePager.html` (clean route: `/IHS-120-Day-OnePager`)
 - `IHS-Round3-Presentation.html` (clean route: `/IHS-Round3-Presentation`)
 
