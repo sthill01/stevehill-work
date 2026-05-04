@@ -780,7 +780,7 @@ const IHSLandingPageSite = () => (
       lead="This page separates role-specific material from the public portfolio. The detailed 120-day plan should be protected with Cloudflare Access before the link is shared."
       noteTitle="Recommended access model."
       note="Keep the overview lightweight. Protect the detailed plan route at the Cloudflare edge so the content is not exposed as a public page."
-      actions={<><a className="btn btn-filled" href="/IHS/120-day-plan">Open 120-day plan</a><a className="btn" href="/HowIWork.html">How I work</a></>}
+      actions={<><a className="btn btn-filled" href="/HowIWork.html">How I work</a></>}
     />
     <div className="blog-rail-layout">
       <SideRailHiFi links={[["#packet", "Packet"], ["#focus", "Operating focus"], ["#access", "Access"]]} />
