@@ -1,5 +1,69 @@
 const BLOG_POSTS = [
   {
+    date: "May 13, 2026",
+    topic: "Revenue Modeling",
+    title: "Revenue modeling is not a spreadsheet. It is a control system.",
+    copy:
+      "How forecasting, pipeline coverage, quota capacity, and source-to-revenue confidence fit into one operating view.",
+    href: "Blog_Revenue_Ops_Examples.html#revenue-modeling",
+  },
+  {
+    date: "May 13, 2026",
+    topic: "Scenario Planning",
+    title: "The point of scenario planning is to make tradeoffs visible.",
+    copy:
+      "Sensitivity models for pricing, product mix, discounting, and attach-rate decisions should show where the business has room to move.",
+    href: "Blog_Revenue_Ops_Examples.html#scenario-planning",
+  },
+  {
+    date: "May 13, 2026",
+    topic: "Funnel Optimization",
+    title: "Revenue leakage usually hides between stages.",
+    copy:
+      "A funnel deep-dive should isolate the handoff, stage, source, or customer segment where revenue is slowing down.",
+    href: "Blog_Revenue_Ops_Examples.html#funnel-optimization",
+  },
+  {
+    date: "May 13, 2026",
+    topic: "Executive Reporting",
+    title: "Executive reporting should end with a decision.",
+    copy:
+      "The useful report translates raw data into a short performance narrative, a confidence level, and a scale, fix, test, or watch recommendation.",
+    href: "Blog_Revenue_Ops_Examples.html#executive-reporting",
+  },
+  {
+    date: "May 13, 2026",
+    topic: "Annual Planning",
+    title: "Annual planning needs pipeline math and operating judgment.",
+    copy:
+      "Territory strategy, sales capacity, and GTM goals work better when planning connects targets, coverage, conversion, and realistic execution capacity.",
+    href: "Blog_Revenue_Ops_Examples.html#annual-planning",
+  },
+  {
+    date: "May 13, 2026",
+    topic: "Trend Analysis",
+    title: "Trends are only useful when they point to a lever.",
+    copy:
+      "Stage, vertical, product-line, and channel trends should separate durable patterns from noise and highlight where adjustment is needed.",
+    href: "Blog_Revenue_Ops_Examples.html#trend-analysis",
+  },
+  {
+    date: "May 13, 2026",
+    topic: "Data Integration",
+    title: "A single source of truth is an operating agreement.",
+    copy:
+      "The technical work matters, but the harder work is aligning definitions, source systems, joins, and ownership across Salesforce and internal data.",
+    href: "Blog_Revenue_Ops_Examples.html#data-integration",
+  },
+  {
+    date: "May 13, 2026",
+    topic: "Collaboration",
+    title: "Good revenue analytics is cross-functional by design.",
+    copy:
+      "The data team, RevOps, marketing, sales, finance, and leadership all need the same measurement layer to support different decisions.",
+    href: "Blog_Revenue_Ops_Examples.html#collaboration",
+  },
+  {
     date: "Apr 24, 2026",
     topic: "Case Study",
     title: "Budget up, CAC up: how backward funnel isolation cut our CAC 60%+",
@@ -57,11 +121,13 @@ const BLOG_POSTS = [
   },
 ];
 
-const BlogSideRail = ({ article = false }) => (
+const BlogSideRail = ({ article = false, links = null }) => (
   <aside className="blog-side-rail" aria-label="On this page">
     <div className="blog-side-label">{article ? "Article sections" : "On this page"}</div>
     <nav>
-      {article ? (
+      {links ? (
+        links.map(([href, label]) => <a href={href} key={href}>{label}</a>)
+      ) : article ? (
         <>
           <a href="#when-metrics-break">When metrics break</a>
           <a href="#six-moves">The six moves</a>
@@ -229,6 +295,213 @@ const MethodStrip = () => (
       </div>
     ))}
   </div>
+);
+
+const REVENUE_OPS_ARTICLE_LINKS = [
+  ["#revenue-modeling", "Revenue modeling"],
+  ["#scenario-planning", "Scenario planning"],
+  ["#funnel-optimization", "Funnel optimization"],
+  ["#executive-reporting", "Executive reporting"],
+  ["#annual-planning", "Annual planning"],
+  ["#trend-analysis", "Trend analysis"],
+  ["#data-integration", "Data integration"],
+  ["#collaboration", "Collaboration"],
+  ["#operating-artifacts", "Operating artifacts"],
+];
+
+const REVENUE_OPS_EXAMPLES = [
+  {
+    id: "revenue-modeling",
+    label: "Revenue Modeling",
+    title: "Build the model that explains whether the growth plan is covered.",
+    responsibility: "Forecasting, pipeline coverage, quota capacity, and predictable growth planning.",
+    proof:
+      "At Netgain, the useful view was not just lead volume. It was pipeline movement across a long buyer journey: which touches became real opportunities, where stage velocity slowed, and whether the mid-funnel could support the growth target. At Website Squirrel, the same discipline showed up as CAC, segment economics, and payback logic.",
+    artifact: ["Pipeline coverage model", "Forecast bridge", "Quota capacity inputs", "Source-to-revenue confidence"],
+  },
+  {
+    id: "scenario-planning",
+    label: "Strategic Scenario Planning",
+    title: "Make the impact of pricing, mix, discounting, and attach rate visible before the decision is made.",
+    responsibility: "Sensitivity models for pricing changes, product mix, discounting, and attach-rate scenarios.",
+    proof:
+      "The closest pattern from my work is the way I approach tradeoff analysis: isolate the driver, build a simple scenario layer, and show leadership what changes if volume, conversion, price, or mix moves. That pattern applies whether the lever is SaaS package mix, service attach rate, discounting, or paid-channel reallocation.",
+    artifact: ["Sensitivity table", "Best/base/worst case", "Margin impact view", "Decision memo"],
+  },
+  {
+    id: "funnel-optimization",
+    label: "Funnel Optimization",
+    title: "Find the leakage point before prescribing the fix.",
+    responsibility: "Deep-dive conversion analysis across the customer journey.",
+    proof:
+      "Website Squirrel is the clearest example: budget was rising and CAC was getting worse. The fix came from working backward through attribution, stage conversion, high-intent behavior, and segment quality until the real leakage point was visible. Netgain added the longer-cycle version: stage velocity, multi-touch influence, and mid-funnel movement.",
+    artifact: ["Stage conversion map", "Leakage diagnosis", "High-intent signal report", "Fix / test backlog"],
+  },
+  {
+    id: "executive-reporting",
+    label: "Executive Reporting",
+    title: "Translate raw movement into a decision leaders can act on.",
+    responsibility: "Clear performance narratives and executive recommendations for GTM leadership.",
+    proof:
+      "At Foxit, the executive problem was fragmented reporting across product, billing, support, and marketing. My role was to turn separate data sources into one decision-ready view. The value was not the dashboard by itself; it was the operating narrative: what changed, what mattered, and what the team should do next.",
+    artifact: ["Executive scorecard", "Performance narrative", "Scale / fix / test / watch readout", "Confidence labels"],
+  },
+  {
+    id: "annual-planning",
+    label: "Annual Planning",
+    title: "Support planning with coverage math, capacity assumptions, and realistic execution windows.",
+    responsibility: "Territory strategy, sales capacity planning, and annual GTM goal setting.",
+    proof:
+      "My strongest fit here is the planning layer underneath the work: connecting targets to funnel math, stage conversion, campaign capacity, and reporting cadence. I would treat annual planning as a model plus a governance rhythm: what target are we covering, what assumptions drive it, and where do we revisit the plan when reality moves?",
+    artifact: ["GTM planning model", "Capacity assumption sheet", "Territory / segment readout", "Quarterly checkpoint cadence"],
+  },
+  {
+    id: "trend-analysis",
+    label: "Trend Analysis",
+    title: "Separate real movement from noise, then point to the lever.",
+    responsibility: "Performance trends across sales stages, verticals, and product lines.",
+    proof:
+      "Across Foxit and Netgain, the trend question was rarely one metric. It was product line, stage, source, lifecycle motion, and customer segment moving together. The job was to show where performance was strong, where the trend was weakening, and whether the next move was budget, messaging, routing, nurture, or operational follow-up.",
+    artifact: ["Stage trend view", "Product-line comparison", "Vertical or segment cut", "Exception list"],
+  },
+  {
+    id: "data-integration",
+    label: "Data Integration",
+    title: "A single source of truth is mostly a definition problem before it is a tooling problem.",
+    responsibility: "Aggregate Salesforce and internal systems into unified revenue views.",
+    proof:
+      "Foxit is the strongest proof point: product usage, billing, support, and marketing signals had to become one reconciled layer before leaders could trust the story. In other work, I have used SQL, Power Query, Power BI, Python, CRM data, and internal exports to build the same pattern: source systems stay where they belong, but the decision layer becomes shared.",
+    artifact: ["Source-to-field map", "Data contract", "Unified revenue view", "QA reconciliation checks"],
+  },
+  {
+    id: "collaboration",
+    label: "Cross-Functional Collaboration",
+    title: "Revenue analytics only works when the owners of the handoffs are in the room.",
+    responsibility: "Partner with Data and RevOps so reporting scales into company-wide frameworks.",
+    proof:
+      "The common thread in my work is cross-functional alignment: marketing with sales, product with support, billing with executive reporting, operations with vendor accountability. The technical artifact matters, but the operating agreement is what keeps it alive: definitions, owners, cadence, and escalation paths.",
+    artifact: ["RACI / owner map", "Definition workshop", "Reporting governance", "Weekly decision rhythm"],
+  },
+];
+
+const RevenueOpsArticlePage = () => (
+  <main className="blog-mock">
+    <section className="article-masthead">
+      <div className="article-masthead-inner">
+        <article>
+          <a className="article-back" href="Blog.html">
+            Back to blog
+          </a>
+          <div className="blog-kicker">Revenue analytics / GTM operations</div>
+          <h1 className="article-title">
+            Revenue operations analytics: the responsibilities I map to real operating work.
+          </h1>
+          <p className="article-dek">
+            These are the revenue analytics responsibilities I would want a GTM leader to see in
+            my background: forecasting, scenario planning, funnel leakage, executive reporting,
+            annual planning support, trend analysis, data integration, and cross-functional cadence.
+          </p>
+        </article>
+        <aside className="article-snapshot">
+          <div className="article-meta-line">
+            <span className="tag tag-amber">May 13, 2026</span>
+            <span className="tag">Portfolio proof</span>
+          </div>
+          <h2>What this post does</h2>
+          <p>It translates past work into the language of revenue modeling, RevOps, and GTM decision support.</p>
+          <ul>
+            <li>Connects each responsibility to a practical artifact.</li>
+            <li>Uses proof from Foxit, Netgain, Website Squirrel, and UTA.</li>
+            <li>Keeps the claims grounded where the fit is direct or adjacent.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <div className="article-content-layout">
+      <BlogSideRail article links={REVENUE_OPS_ARTICLE_LINKS} />
+      <article className="article-prose">
+        <section id="revenue-modeling">
+          <h2>Revenue modeling starts with the coverage question.</h2>
+          <p>
+            The useful question is not, "Do we have a forecast?" It is, "Do we have enough qualified
+            pipeline, capacity, conversion, and timing to make the forecast believable?" That is where
+            revenue modeling becomes an operating control instead of a spreadsheet exercise.
+          </p>
+          <div className="blog-note-band">
+            <h3>My fit.</h3>
+            <p>
+              I have built the underlying pieces: funnel models, CAC and payback views, stage-velocity
+              dashboards, product portfolio reporting, and executive scorecards. The next layer is using
+              those inputs to support pipeline coverage and quota capacity conversations.
+            </p>
+          </div>
+          <div className="metric-chip-row">
+            {REVENUE_OPS_EXAMPLES[0].artifact.map((artifact) => <span key={artifact}>{artifact}</span>)}
+          </div>
+        </section>
+
+        {REVENUE_OPS_EXAMPLES.slice(1).map((item) => (
+          <section id={item.id} key={item.id}>
+            <h2>{item.title}</h2>
+            <p><strong>{item.label}:</strong> {item.responsibility}</p>
+            <p>{item.proof}</p>
+            <div className="metric-chip-row">
+              {item.artifact.map((artifact) => <span key={artifact}>{artifact}</span>)}
+            </div>
+          </section>
+        ))}
+
+        <section id="operating-artifacts">
+          <h2>The common artifact is a trusted revenue operating layer.</h2>
+          <p>
+            The specific output changes by team. A CRO may need pipeline coverage and stage velocity.
+            A CFO may need CAC efficiency, payback, and forecast confidence. RevOps may need data
+            definitions, routing logic, and owner clarity. The pattern is the same: make the revenue
+            path visible enough that leadership can decide what to scale, fix, test, or watch.
+          </p>
+          <div className="segment-table">
+            {REVENUE_OPS_EXAMPLES.map((item) => (
+              <div className="segment-row" key={item.label}>
+                <b>{item.label}</b>
+                <p>{item.artifact.join(" / ")}</p>
+                <span className="segment-signal">Proof lane</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="related-posts">
+          <h2>Related posts.</h2>
+          <div className="related-river">
+            <a href="Blog_Article.html">
+              <h3>Budget up, CAC up</h3>
+              <p>The Website Squirrel proof point behind CAC efficiency and funnel leakage work.</p>
+            </a>
+            <a href="Case-Netgain.html">
+              <h3>Netgain attribution and velocity</h3>
+              <p>The long-cycle SaaS example behind pipeline contribution and stage movement.</p>
+            </a>
+            <a href="Case-Foxit.html">
+              <h3>Foxit lifecycle reporting</h3>
+              <p>The multi-product source-of-truth example behind executive reporting and integration.</p>
+            </a>
+          </div>
+        </section>
+      </article>
+
+      <aside className="article-side-note" aria-label="Article note">
+        <div className="article-side-note-inner">
+          <h3>The operating lesson</h3>
+          <p>
+            Revenue analytics is most valuable when it reduces uncertainty before a decision:
+            forecast confidence, pipeline coverage, CAC efficiency, stage velocity, or the next
+            planning assumption that needs to be revisited.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
 );
 
 const BlogArticlePage = () => (
@@ -427,4 +700,4 @@ const BlogArticlePage = () => (
   </main>
 );
 
-Object.assign(window, { BlogIndexPage, BlogArticlePage });
+Object.assign(window, { BlogIndexPage, BlogArticlePage, RevenueOpsArticlePage });

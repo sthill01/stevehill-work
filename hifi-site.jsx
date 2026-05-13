@@ -192,6 +192,17 @@ const EXAMPLE_CHANNEL_REPORTS = [
   ["Offline / direct", "Attribution confidence", "Promo codes, matched calls, branded search lift and source reconciliation."]
 ];
 
+const REVENUE_SKILL_EXAMPLES = [
+  ["Revenue Modeling", "Forecasting and coverage", "Built the underlying funnel, CAC, payback, stage-velocity and portfolio reporting inputs needed for pipeline coverage and predictable growth conversations."],
+  ["Strategic Scenario Planning", "Sensitivity and tradeoffs", "Used driver-based thinking to show what changes when volume, conversion, pricing, mix, discounting or attach-rate assumptions move."],
+  ["Funnel Optimization", "Revenue leakage", "Diagnosed stage-level leakage at Website Squirrel and Netgain by working backward from closed-loop outcomes into source quality, stage conversion and buyer behavior."],
+  ["Executive Reporting", "Decision narrative", "Turned fragmented product, billing, support and marketing data into executive-ready scorecards and scale, fix, test or watch recommendations."],
+  ["Annual Planning", "GTM goal support", "Mapped targets back to funnel math, stage conversion, source capacity, execution cadence and realistic assumptions for planning conversations."],
+  ["Trend Analysis", "Stage and segment movement", "Compared movement across product lines, funnel stages, customer segments and channels to highlight strength, risk and needed adjustment."],
+  ["Data Integration", "Single source of truth", "Used SQL, Power Query, Power BI, Python, CRM data and internal exports to reconcile separate systems into shared operating views."],
+  ["Cross-Functional Collaboration", "Governance and owners", "Aligned marketing, sales, product, support, finance, data and operations around definitions, owners, cadence and decision rights."]
+];
+
 const CASE_REPORT_EXAMPLES = {
   foxit: [
     ["Activation dashboard", "Which product signals predict paid conversion or expansion?", ["Trial start", "Feature adoption", "Usage depth", "Activation rate", "Expansion signal"]],
@@ -582,7 +593,7 @@ const ExamplesPageSite = () => (
       note="The reader should be able to scan one story and understand both the business result and the kind of operator behind it."
     />
     <div className="blog-rail-layout">
-      <SideRailHiFi links={[["#comparison", "Comparison"], ["#funnel-reports", "Funnel reports"], ["#channel-reports", "Channel reports"], ["#stories", "Stories"]]} />
+      <SideRailHiFi links={[["#comparison", "Comparison"], ["#revenue-skills", "Revenue skills"], ["#funnel-reports", "Funnel reports"], ["#channel-reports", "Channel reports"], ["#stories", "Stories"]]} />
       <div>
         <section id="comparison" className="blog-section">
           <SectionIntroHiFi eyebrow="Comparison layer" title="The four stories cover different operating muscles." copy="Together they show attribution, lifecycle reporting, CAC efficiency, mid-funnel strategy and operational BI." />
@@ -590,6 +601,23 @@ const ExamplesPageSite = () => (
             {EXAMPLES_HIFI.map(([idx, brand, theme, title, lever, href]) => (
               <a className="post-line" href={href} key={brand}><div className="post-line-date">{idx}</div><div><h3>{brand}: {lever}</h3><p>{title}</p></div><div className="post-line-topic">{theme}</div></a>
             ))}
+          </div>
+        </section>
+        <section id="revenue-skills" className="blog-section">
+          <SectionIntroHiFi eyebrow="Revenue analytics proof" title="How my past work maps to GTM and RevOps responsibilities." copy="This is the short version for a hiring manager: each responsibility connects to work I have already done, plus the kind of artifact I would build inside a revenue team." />
+          <div className="channel-ledger">
+            {REVENUE_SKILL_EXAMPLES.map(([skill, role, copy]) => (
+              <div className="channel-line" key={skill}>
+                <div>
+                  <span>{role}</span>
+                  <h3>{skill}</h3>
+                </div>
+                <p>{copy}</p>
+              </div>
+            ))}
+          </div>
+          <div className="site-page-actions">
+            <a className="btn btn-filled" href="Blog_Revenue_Ops_Examples.html">Read the revenue analytics post</a>
           </div>
         </section>
         <section id="funnel-reports" className="blog-section">
